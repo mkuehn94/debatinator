@@ -1,0 +1,3 @@
+requests
+pyannote.audio>=4
+soundfile

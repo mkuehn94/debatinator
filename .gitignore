@@ -1,0 +1,7 @@
+data/
+*.wav
+*.m4a
+*.json3
+*.labels.json
+__pycache__/
+.venv/
