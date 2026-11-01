@@ -1,6 +1,15 @@
-# Debatinator 4000
+# Debatinator 4000 (or local AI debate suggestions in near real time)
+Working on this with my good ([friend](https://github.com/Red-fuchs)). Debates and AI Engineering are our common interests! give him a follow!
 
-Local live debate assistant: listens to a debate, transcribes it per speaker and labels each turn with classic debate tricks (strawman, red herring, slippery slope, false dilemma, ad hominem, whataboutism, anecdote) plus positives (steelman, good faith). Later: school of thought per speaker and 2–3 reply suggestions, shown as a dashboard.
+Local live debate assistant: listens to a debate, transcribes it per speaker and labels each turn with classic debate tricks (strawman, red herring, slippery slope, false dilemma, ad hominem, whataboutism, anecdote) plus positives (steelman, good faith). Later: school of thought per speaker and 2–3 reply suggestions, shown as a dashboard or TUI.
+
+## Challenges
+
+- **Real-time Streaming vs. [Diarisation](https://en.wikipedia.org/wiki/Speaker_diarisation) Overhead:** Batch models like `pyannote` struggle in live setups. Balancing low-latency streaming speech-to-text with accurate speaker separation during overlaps and cross-talk on local hardware is tight. (optimal setup would be dealing with a single audio source in a 1 to 1 debate obviously, but testing beyong that is already planned)
+- **Context Granularity & Turn Chunking:** Long monologoues might result in longer processing time of the argument. It's possible people even chain arguments together. Theoretically you could rhetorically dissect and counter each argument. A smarter choice would probably to explicitly state this in a debate and then just attacking the weakest of the arguments. However computationally this needs non trivial semantic understanding of the structure. 
+- **Rhetorical Nuance vs. Small Model Size:** subtle fallacies (e.g., *strawman accusation* vs. *strawman*, *red herring* vs. *evasion*) are usually made to confuse your opponent (when done in bad-faith) with low-parameter decision models (`d1-2B/3B`) detecting those becomes a hard task, (false positives/negatives might be hard to tackle on rather slower hardware)
+- **Cross-Platform Backend Parity:** Trying to make this program work on apple silicon and x86 at the same time is a challenge. Since both developers use either one or the other, this will be not be a big problem.
+- **Live UI Synchronization:** Probably the hardest, understand the WHO in who is speaking and the CONTEXT. off topic, jokes, irony etc... Thats a common non trivial problem on speech analysis compared tp calssical NLP. 
 
 Runs on **Windows/Linux (llama.cpp, CUDA)** and **macOS (MLX or llama.cpp Metal)**. Everything local.
 
@@ -48,14 +57,4 @@ python eval/diarize.py data/duel.wav data/duel.turns.json 3
 cd eval && python turns.py ../data/duel.json3 ../data/duel.turns.json
 ```
 
-`data/` is git-ignored: no audio or captions in the repo.
-
-## Status / next
-
-- [x] d1 as trick detector on clean snippets: one `choice` question 11/12 @ ~200 ms (d1-3B MLX)
-- [x] real TV duel per speaker turn: noise down from 26 to 7 hits, ~4 plausible
-- [ ] taxonomy: add **evasion**, split **strawman accusation** from strawman
-- [ ] split long turns (1–2 min) into ~30 s chunks with the opponent's last turn as context
-- [ ] d1-2B GGUF on llama.cpp (Win/Linux path), same numbers
-- [ ] HTML dashboard (timeline, color chips per speaker, explanation cards)
-- [ ] live mode (realtime STT), Discord per-speaker tracks, Kitsune debate mode on Mac
+`data/` is git-ignored: no audio, captions or big data files in the repo.

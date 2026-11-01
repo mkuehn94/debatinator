@@ -57,8 +57,12 @@ Mapping: **fast pass = d1-2B** (each utterance: N `noul` questions for tricks + 
 | 3 | Kitsune debate mode (Mac), learning-mode cards | – |
 
 ## Open questions for max
-1. Primary language of the debates (German, English, both)?
-2. Main source: Discord, YouTube, or both?
-3. Your hardware/OS for the test (GPU, VRAM) → model size for the fast/slow pass
-4. Which of the two dashboard mockups should we use? (redfuchs prefers the upper one: quick to learn visually)
-5. Tech stack preference for the shared core (Rust single binary vs. Node vs. Python)?
+1. Primary language of the debates (German, English, both)? 
+ - (Max: I would focus on german first)
+2. Main source: Discord, YouTube, or both? 
+- (Max: For training? anything that is fair use. youtube might be easier to gather)
+3. Your hardware/OS for the test (GPU, VRAM) → model size for the fast/slow pass 
+- (Max: see [Results](docs/Results.md).)
+4. Which of the two dashboard mockups should we use? (redfuchs prefers the upper one: quick to learn visually) 
+- (Max has no problems with that but we also though about a TUI implementation. hoenstly dashboard is better anyway, more freedom, bigger text, start with one first, KISS)
+5. Tech stack preference for the shared core (Rust single binary vs. Node vs. Python)? 
