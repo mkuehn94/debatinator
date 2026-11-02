@@ -40,7 +40,7 @@ Also needed: `yt-dlp`, `ffmpeg`.
 
 | OS | Command | `D1_URL` |
 |---|---|---|
-| Win/Linux/macOS | `scripts/serve-d1-llamacpp.sh` (llama.cpp release ≥ v0.8.0 with `/v1/systemone`, pulls `LiquidAI/d1-2B-GGUF:Q8_0`) | `http://127.0.0.1:8096/v1/systemone` |
+| Win/Linux/macOS | `scripts/serve-d1-llamacpp.sh -c 2048 -ub 2048` (llama.cpp ≥ v0.8.0, context + physical batch size for long turns) | `http://127.0.0.1:8096/v1/systemone` |
 | macOS | `D1_MODEL=<mlx d1 dir> scripts/serve-d1-mlx.sh` (mlx-vlm main) | default `http://127.0.0.1:8095/v1/decisions` |
 
 On Windows run the `.sh` steps in Git Bash/WSL or call the commands directly.

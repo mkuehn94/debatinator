@@ -2,7 +2,7 @@
 
 - [x] d1 as trick detector on clean snippets: one `choice` question 11/12 @ ~200 ms (d1-3B MLX)
 - [x] real TV duel per speaker turn: noise down from 26 to 7 hits, ~4 plausible
-- tasks:
+- tasks: Add more Examples, At the start verify manually, there is no good verification set out there I assume.
 - bugs:
 - problems: 
     - recursive accusation, when a fallacy is named: who accuses who is the accused? 
@@ -14,8 +14,8 @@
         - Identify the argument (might be even possible before he even finishes)
         - from a picked ideology, the most strong even devastating argument should be used against that. (calculated in real time)
         - maybe close to what you say in concept 1.3 "counter, steelman-then-counter, question back" this heavily depends on what your opponent says. I think it should be more "free" to decide three good answers with variety as the **ONLY** constraint
-- nice-to-haves:
-- milestone to next step:
+    - nice-to-haves: TUI as agreed upon.
+    - milestone to next step: Definately more samples,, let's agree on a number together.
 - [ ] taxonomy: add **evasion**, split **strawman accusation** from strawman
 - [ ] split long turns (1–2 min) into ~30 s chunks with the opponent's last turn as context
 - [ ] d1-2B GGUF on llama.cpp (Win/Linux path), same numbers

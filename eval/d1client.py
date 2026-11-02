@@ -24,9 +24,15 @@ def ask(state: str, questions: dict) -> tuple[dict, float]:
 
 
 def wait(sec: int = 120):
-    for _ in range(sec):
+    print(f"waiting for d1 server at {URL}...", end="", flush=True)
+    for i in range(sec):
         try:
-            requests.get(URL, timeout=1); return
+            requests.get(URL, timeout=1)
+            print(f" ✓ ready in {i}s")
+            return
         except requests.RequestException:
+            if (i + 1) % 10 == 0:
+                print(f" ({i}s)", end="", flush=True)
             time.sleep(1)
-    raise SystemExit(f"no d1 server at {URL}")
+    print(f"\n✗ server not reachable after {sec}s")
+    raise SystemExit(f"no d1 server at {URL}\n\nstart it with: bash scripts/serve-d1-llamacpp.sh -c 2048 -ub 2048")

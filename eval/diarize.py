@@ -1,8 +1,8 @@
 """pyannote community-1 diarization → turns.json [{start,end,spk}] (exclusive). usage: diarize.py audio.wav turns.json [n_speakers]"""
-import json, sys, torch, soundfile as sf
+import json, sys, torch, soundfile as sf, os
 from pyannote.audio import Pipeline
 wav, out, n = sys.argv[1], sys.argv[2], int(sys.argv[3]) if len(sys.argv) > 3 else None
-p = Pipeline.from_pretrained("pyannote/speaker-diarization-community-1")
+p = Pipeline.from_pretrained("pyannote/speaker-diarization-community-1", token=os.getenv("HF_TOKEN"))
 p.to(torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"))
 x, sr = sf.read(wav, dtype="float32")
 res = p({"waveform": torch.from_numpy(x)[None], "sample_rate": sr}, num_speakers=n)
