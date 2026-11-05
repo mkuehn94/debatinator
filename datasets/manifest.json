@@ -1,29 +1,24 @@
 {
   "schema_version": 1,
-  "purpose": "Shared review-aware German debate-pattern dataset; not a gold benchmark.",
+  "purpose": "Accepted-only German debate-pattern dataset; not a gold benchmark.",
   "counts": {
-    "all": 306,
+    "all": 107,
     "by_status": {
-      "accepted": 107,
-      "rejected": 4,
-      "uncertain": 42,
-      "pending": 153
+      "accepted": 107
     },
     "by_collection": {
       "dekarldent": 4,
-      "mm_used": 150,
-      "research_catalog": 152
+      "mm_used": 103
     }
   },
   "input_sha256": {
     "eval/fixtures/debate_cases.json": "3167b09e727d2fb81fd63bb99b9f2d9246790bc7cbb7f4375696ef3a8a3b9bd4",
-    "docs/fallacies/catalog.json": "995e26279e1352cbe074242d212a7027dfbe34599390f3548da86a849a16f3c8",
-    "docs/fallacies/sources.json": "526542606015f7abcd74fcdc64a797243705a72add0e6291b54cc4dc7dcf35ee",
-    "datasets/inputs/mm_used.json": "eaf555799853fcb8bef2c9d9196d5f8864fe28516c53599d290020aea9be3c28",
-    "datasets/reviews/mm_used.json": "c52ee74d223f1e90cbe49ba9880058f9f10a1055f98fcdef8fe9baa60135029e"
+    "datasets/inputs/mm_used.json": "ceb7ee89c2284f867e77d19c296d702ec03738f34aec595f4025d6cb5addb082",
+    "datasets/reviews/mm_used.json": "a2e0fd85cd44ad0316bfc8d365442577e306be66742dea3d74f3be2fa2808e94"
   },
   "rights": "Mixed source-specific rights; no blanket dataset license. MM-USED text stays local pending upstream license clarification.",
-  "partitions": "Review buckets only, not train/test splits. Preserve source_split and group_ids when designing evaluation.",
+  "selection": "Only explicit user agreement retained. Rejected, uncertain, pending and research-catalog records removed.",
+  "partitions": "No train/test splits assigned. Preserve source_split and group_ids when designing evaluation.",
   "labels": "Namespaced source labels. Only Dekarldent fixtures have confirmed project_main labels. Agreement is not audio verification.",
   "text_policy": "Tracked index has input=null. Full inputs and contexts are generated only under ignored data/datasets/shared/.",
   "local_directory": "data/datasets/shared"

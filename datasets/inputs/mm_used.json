@@ -12,30 +12,6 @@
   },
   "examples": [
     {
-      "id": "mm-used-302ba4900be6-r0004-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0004",
-      "source_row_index": 4,
-      "context_id": "context-faf218abda0662a57bb7",
-      "debate_id": "2_1960",
-      "source_split": "Test",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          506,
-          664
-        ]
-      ],
-      "source_audio_begin_seconds": "2792.16",
-      "source_audio_end_seconds": "2800.44",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "Political and historical claims are translated, not fact-checked or endorsed; the source's unresolved 'them' remains unresolved."
-      ],
-      "review_hints": [],
-      "source_input_sha256": "bca1d3e751dbbbc1f5b28733817245547c09b610c73ac59154633437a403d690"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0009-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0009",
       "source_row_index": 9,
@@ -84,30 +60,6 @@
       "source_input_sha256": "f6378333f21c007bc6fc478e7022e017f14ed9e0a7c795f2475788aa3ffefb7b"
     },
     {
-      "id": "mm-used-302ba4900be6-r0016-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0016",
-      "source_row_index": 16,
-      "context_id": "context-73bf03b1e566ad1f06a9",
-      "debate_id": "2_1960",
-      "source_split": "Test",
-      "source_label": "AdHominem",
-      "source_subcategory": "Tu quoque",
-      "source_span_candidates_en": [
-        [
-          3872,
-          4199
-        ]
-      ],
-      "source_audio_begin_seconds": "1112.08",
-      "source_audio_end_seconds": "1144.6",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "bed627a54ea686c5d3aab978bbbac7c9c1085b2ebd0d0cc50589885210f953e8"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0020-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0020",
       "source_row_index": 20,
@@ -132,32 +84,6 @@
       "source_input_sha256": "0eb64e042c9445432387c5e3db978254bbd8b15bf71b287b5545b90ce57a309f"
     },
     {
-      "id": "mm-used-302ba4900be6-r0024-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0024",
-      "source_row_index": 24,
-      "context_id": "context-1f940d42fd5336b9ab3b",
-      "debate_id": "2_1960",
-      "source_split": "Test",
-      "source_label": "AdHominem",
-      "source_subcategory": "Tu quoque",
-      "source_span_candidates_en": [
-        [
-          120,
-          624
-        ]
-      ],
-      "source_audio_begin_seconds": "1747.2",
-      "source_audio_end_seconds": "1777.2",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "Singular/plural and competing bill references in the original are not silently reconciled."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "87cf9b68feea05a6896937719d8f2653b95566d2c631a6eacbbb13e9e9db2a52"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0031-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0031",
       "source_row_index": 31,
@@ -178,32 +104,6 @@
       "translation_notes": [],
       "review_hints": [],
       "source_input_sha256": "998434748e081422898b9aecb3347e5405c09e0f2da36c37c6bc6f94101393ea"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0033-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0033",
-      "source_row_index": 33,
-      "context_id": "context-418bc54347a4bd9dcc90",
-      "debate_id": "4_1960",
-      "source_split": "Validation",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "False Authority",
-      "source_span_candidates_en": [
-        [
-          6423,
-          6593
-        ]
-      ],
-      "source_audio_begin_seconds": "546.64",
-      "source_audio_end_seconds": "558.08",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "'First' is read as enumeration, followed by 'We also...' in the source context, not as a claim that peace would be temporary."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "5298701e54eed3173901969f08329d71a502419904f31304ba83b10f16f602ca"
     },
     {
       "id": "mm-used-302ba4900be6-r0034-de-review",
@@ -278,30 +178,6 @@
       "source_input_sha256": "30b19471e18946534af1a66385a6740563c78b94de906070d62a2c7ba4269036"
     },
     {
-      "id": "mm-used-302ba4900be6-r0062-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0062",
-      "source_row_index": 62,
-      "context_id": "context-64be2d725013913a8c7f",
-      "debate_id": "6_1976",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          482,
-          696
-        ]
-      ],
-      "source_audio_begin_seconds": "524.96",
-      "source_audio_end_seconds": "540.68",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "7b12bd348aa3ef4bfad21109e4d74e8e4b9a5eb2f57386f0d254a0ef4d5d8f22"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0063-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0063",
       "source_row_index": 63,
@@ -350,54 +226,6 @@
       "source_input_sha256": "136b56f038294cdb3f61b2ca1a7c365fabc1c14a23254b349b38545d2945e217"
     },
     {
-      "id": "mm-used-302ba4900be6-r0073-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0073",
-      "source_row_index": 73,
-      "context_id": "context-8b41f444429d8c104c33",
-      "debate_id": "6_1976",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          4528,
-          4687
-        ]
-      ],
-      "source_audio_begin_seconds": "3201.8",
-      "source_audio_end_seconds": "3211.36",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "a974c1976e4ef6338c9824107ee7cb21e22c0a8f3f75436c8e8cd9ac5a5e2920"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0085-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0085",
-      "source_row_index": 85,
-      "context_id": "context-3c1359dd30107802fa50",
-      "debate_id": "7_1976",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          2712,
-          3030
-        ]
-      ],
-      "source_audio_begin_seconds": "4303.6",
-      "source_audio_end_seconds": "4324.6",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "5c2f8170670d8eb939983ac9b46996bb81b23193c6f22e90f177d59c3242e4f3"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0086-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0086",
       "source_row_index": 86,
@@ -422,32 +250,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "6efdd0822f7644f8c8d9124801f69cad3a1e6d3a4b369ed8e25c8316d9de8d81"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0087-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0087",
-      "source_row_index": 87,
-      "context_id": "context-24badf62de0b25f25268",
-      "debate_id": "7_1976",
-      "source_split": "Train",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "False Authority",
-      "source_span_candidates_en": [
-        [
-          2505,
-          2776
-        ]
-      ],
-      "source_audio_begin_seconds": "4555.36",
-      "source_audio_end_seconds": "4578.0",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "Wiederholungen und Selbstkorrekturen geglättet, aber keine zusätzliche Behauptung ergänzt."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "8e57926b02e3de823bbfe540296369b7863e32d38a1bd0b7b4b280519d4d7b89"
     },
     {
       "id": "mm-used-302ba4900be6-r0093-de-review",
@@ -496,32 +298,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "ff0f6ec271314bbded38680dc23350cdaeae06eda03e379c73eea7b7bd3e5fbd"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0099-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0099",
-      "source_row_index": 99,
-      "context_id": "context-5419532f931b268eade2",
-      "debate_id": "7_1976",
-      "source_split": "Train",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "Without Evidence",
-      "source_span_candidates_en": [
-        [
-          1758,
-          2020
-        ]
-      ],
-      "source_audio_begin_seconds": "1542.36",
-      "source_audio_end_seconds": "1558.92",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "Uncertain recollection and a verbal restart are preserved; no asserted apology is added."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "5435405f75f021e643ad71403d0ef0beb793bfeba0613e36499bb74aa07d7e0b"
     },
     {
       "id": "mm-used-302ba4900be6-r0101-de-review",
@@ -755,30 +531,6 @@
       "source_input_sha256": "7a1b49a24114898f49097940b4e26b3ef6df4a56513a7e54c12ac87b8b96442d"
     },
     {
-      "id": "mm-used-302ba4900be6-r0170-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0170",
-      "source_row_index": 170,
-      "context_id": "context-4e5caf6b1821355ba393",
-      "debate_id": "9_1980",
-      "source_split": "Train",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "Appeal to popular opinion",
-      "source_span_candidates_en": [
-        [
-          6232,
-          6469
-        ]
-      ],
-      "source_audio_begin_seconds": "2008.76",
-      "source_audio_end_seconds": "2023.6",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "96b543ca4e78b7c0ff1b5a3344c469d73679bd8cc7733a4814126a5691bda1bf"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0171-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0171",
       "source_row_index": 171,
@@ -829,80 +581,6 @@
       "source_input_sha256": "c930911b870c057227da4c07b9d6918a9363c628cc85c21d544d01eb062ac803"
     },
     {
-      "id": "mm-used-302ba4900be6-r0189-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0189",
-      "source_row_index": 189,
-      "context_id": "context-c91e848696185d8bc6b2",
-      "debate_id": "9_1980",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          5843,
-          6179
-        ]
-      ],
-      "source_audio_begin_seconds": "3903.36",
-      "source_audio_end_seconds": "3926.84",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "1c27343fcc2c53329eddcb383ccfc26f31679e59af436bb5b3e4427947fd5e67"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0203-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0203",
-      "source_row_index": 203,
-      "context_id": "context-d279807e4347e6a75729",
-      "debate_id": "9_1980",
-      "source_split": "Train",
-      "source_label": "AdHominem",
-      "source_subcategory": "Tu quoque",
-      "source_span_candidates_en": [
-        [
-          2425,
-          2891
-        ]
-      ],
-      "source_audio_begin_seconds": "4863.0",
-      "source_audio_end_seconds": "4902.16",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "12.5% becomes German decimal 12,5%; 'in excess of 20%' remains above 20%, not exactly 20%."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "44dc98d5576abcaec7e52a814b7090567aa9e780437ee3f27cf8787b4fb908ce"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0210-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0210",
-      "source_row_index": 210,
-      "context_id": "context-e973e840468397b4a719",
-      "debate_id": "12_1984",
-      "source_split": "Test",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          1398,
-          1530
-        ]
-      ],
-      "source_audio_begin_seconds": "243.84",
-      "source_audio_end_seconds": "252.76",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "75a81f17429459ea8ce7b6e12809cd2472896fdf9c61e85f37ecd2edeb1b8b18"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0213-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0213",
       "source_row_index": 213,
@@ -925,30 +603,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "0d3f3af7813ca4f09f9598b8412a98aa60691e45cb8fcbd912890879f74a84a2"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0220-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0220",
-      "source_row_index": 220,
-      "context_id": "context-cd1e1aaa1179b5171f77",
-      "debate_id": "12_1984",
-      "source_split": "Test",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          180,
-          579
-        ]
-      ],
-      "source_audio_begin_seconds": "1394.4",
-      "source_audio_end_seconds": "1421.52",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "8e8e72f8422c0a2d672c571c644747b6b6dda8b65de5740b8e19462c3f3557db"
     },
     {
       "id": "mm-used-302ba4900be6-r0226-de-review",
@@ -1047,56 +701,6 @@
       "source_input_sha256": "cb41a228afb520e7c21ca1dc7779ae53fed25c3ad3a19e65402da4d79dbd952f"
     },
     {
-      "id": "mm-used-302ba4900be6-r0253-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0253",
-      "source_row_index": 253,
-      "context_id": "context-d257d99fb6222edcf8bd",
-      "debate_id": "18_1992",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          999,
-          1240
-        ]
-      ],
-      "source_audio_begin_seconds": "1217.52",
-      "source_audio_end_seconds": "1232.64",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "bf3c54583b78867f4f6b39911fa2aeede90e7061cc001ddfd6c6d7ed203c185c"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0257-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0257",
-      "source_row_index": 257,
-      "context_id": "context-4779d01ff2426e4a4d12",
-      "debate_id": "18_1992",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          1212,
-          1507
-        ]
-      ],
-      "source_audio_begin_seconds": "1792.04",
-      "source_audio_end_seconds": "1800.16",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "The negative false start 'We didn't win the Cold --' is retained, not rewritten into an uninterrupted positive assertion."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "a27a7b5cf5e17b41c01b55d59b0e3bbdfa3d75840fbb316b6da0d37cf2ec705c"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0267-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0267",
       "source_row_index": 267,
@@ -1171,54 +775,6 @@
       "source_input_sha256": "e7246738eb116380d3ef660d5d4cc666f4e2dafb276e9f3ff0dfaaa2f90bbfe5"
     },
     {
-      "id": "mm-used-302ba4900be6-r0300-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0300",
-      "source_row_index": 300,
-      "context_id": "context-5894d7fb3a45f46b848c",
-      "debate_id": "20_1992",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          2458,
-          2645
-        ]
-      ],
-      "source_audio_begin_seconds": "1491.12",
-      "source_audio_end_seconds": "1496.28",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "496a0264a85cc2799209cc465efe55ca6494347285468189c72fd328be8aa547"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0306-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0306",
-      "source_row_index": 306,
-      "context_id": "context-86aad0fdfbf6b8387d19",
-      "debate_id": "20_1992",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          2927,
-          3016
-        ]
-      ],
-      "source_audio_begin_seconds": "1832.4",
-      "source_audio_end_seconds": "1836.68",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "0581750ab162e024217545bd0c347c4610caebd5c24ef132faf8af77d28c3d02"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0310-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0310",
       "source_row_index": 310,
@@ -1243,54 +799,6 @@
       "source_input_sha256": "0a890078d5094aaf68fbe0cb138e89204ba78572156e88e57ba51e05f632ba12"
     },
     {
-      "id": "mm-used-302ba4900be6-r0311-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0311",
-      "source_row_index": 311,
-      "context_id": "context-5cff314351aea746f2a1",
-      "debate_id": "20_1992",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          381,
-          607
-        ]
-      ],
-      "source_audio_begin_seconds": "1992.12",
-      "source_audio_end_seconds": "2004.16",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "d6c2e4821d0a9ce8c484b96821e76a2e8076598c75d8b431283951362044dfd9"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0312-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0312",
-      "source_row_index": 312,
-      "context_id": "context-5cff314351aea746f2a1",
-      "debate_id": "20_1992",
-      "source_split": "Train",
-      "source_label": "Slipperyslope",
-      "source_subcategory": "Slippery slope",
-      "source_span_candidates_en": [
-        [
-          644,
-          739
-        ]
-      ],
-      "source_audio_begin_seconds": "2005.6",
-      "source_audio_end_seconds": "2008.68",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "3799f64db7684b9bcece102566f884654662af08eb70ae9abbe8dbb29b20e093"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0318-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0318",
       "source_row_index": 318,
@@ -1313,30 +821,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "072bde89362fb8e9b86424ccbe7a7532645aef30c831aa294550077976aaa24a"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0325-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0325",
-      "source_row_index": 325,
-      "context_id": "context-00593c1beea2650f5f8d",
-      "debate_id": "21_1992",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          2496,
-          2557
-        ]
-      ],
-      "source_audio_begin_seconds": "528.76",
-      "source_audio_end_seconds": "531.52",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "a7c9364eb132388ab887901139dce0ad9dad85c563972a589bb96e845e13f87c"
     },
     {
       "id": "mm-used-302ba4900be6-r0328-de-review",
@@ -1629,54 +1113,6 @@
       "source_input_sha256": "67c7b8b272629108bd80acabc2498f5677110f8f9bfabc6d603b62b59ea2274e"
     },
     {
-      "id": "mm-used-302ba4900be6-r0446-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0446",
-      "source_row_index": 446,
-      "context_id": "context-dd89d30a2f777e04039c",
-      "debate_id": "23_1996",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          1075,
-          1232
-        ]
-      ],
-      "source_audio_begin_seconds": "2573.64",
-      "source_audio_end_seconds": "2589.28",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "4f45fe8bb31b21cb8f123773b8f6d1bf374aa927b907bbcd78e56b2262d3aff2"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0453-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0453",
-      "source_row_index": 453,
-      "context_id": "context-3490d6a63eee08ef6648",
-      "debate_id": "23_1996",
-      "source_split": "Train",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "Appeal to popular opinion",
-      "source_span_candidates_en": [
-        [
-          981,
-          1168
-        ]
-      ],
-      "source_audio_begin_seconds": "3152.36",
-      "source_audio_end_seconds": "3165.04",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "78d28119553063fe8ae7f2c7114f7a8e67969a716212df2bc94bcd17c6a0cea0"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0454-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0454",
       "source_row_index": 454,
@@ -1751,177 +1187,6 @@
       "source_input_sha256": "2e7af10b6c79c5bb3fef35f7a79ed4c3037ab5b167b30465786612a417893680"
     },
     {
-      "id": "mm-used-302ba4900be6-r0502-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0502",
-      "source_row_index": 502,
-      "context_id": "context-b46692b99228f2c42526",
-      "debate_id": "25_2000",
-      "source_split": "Train",
-      "source_label": "AppealtoEmotion",
-      "source_subcategory": "Loaded Language",
-      "source_span_candidates_en": [
-        [
-          14288,
-          14296
-        ]
-      ],
-      "source_audio_begin_seconds": "3776.0",
-      "source_audio_end_seconds": "3776.72",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "very_short_source_fragment",
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "255ecf09d83307e92f8eef2becd90d846148df96a0fe4c55e6aa929f01db5a5d"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0508-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0508",
-      "source_row_index": 508,
-      "context_id": "context-083aad8af91bff71317a",
-      "debate_id": "25_2000",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          2913,
-          2977
-        ]
-      ],
-      "source_audio_begin_seconds": "4280.96",
-      "source_audio_end_seconds": "4285.4",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "25fd14cbed66fae61d5cef8e1c20ab2b2ca334f6f79a773749440ca44a03d3fc"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0509-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0509",
-      "source_row_index": 509,
-      "context_id": "context-083aad8af91bff71317a",
-      "debate_id": "25_2000",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          2978,
-          3082
-        ]
-      ],
-      "source_audio_begin_seconds": "4285.4",
-      "source_audio_end_seconds": "4291.64",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "0f4898b9d29ba4d65c842f77507f491a08ac0416731418e2e3d2e87e316a6152"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0510-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0510",
-      "source_row_index": 510,
-      "context_id": "context-083aad8af91bff71317a",
-      "debate_id": "25_2000",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          3083,
-          3224
-        ]
-      ],
-      "source_audio_begin_seconds": "4291.64",
-      "source_audio_end_seconds": "4301.4",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "Die Quelle sagt ausdrücklich ‚Latin American‘; die Bevölkerungsbezeichnung wurde nicht stillschweigend durch eine andere ersetzt."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "dd460073911002ee5851817ef8f5c4f6afe5d8ef89e8b4ee82b93e2508550f8a"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0511-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0511",
-      "source_row_index": 511,
-      "context_id": "context-083aad8af91bff71317a",
-      "debate_id": "25_2000",
-      "source_split": "Train",
-      "source_label": "AdHominem",
-      "source_subcategory": "Tu quoque",
-      "source_span_candidates_en": [
-        [
-          3953,
-          4092
-        ]
-      ],
-      "source_audio_begin_seconds": "4349.48",
-      "source_audio_end_seconds": "4357.4400000000005",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "7f637c81542202e849d674f1d9eab604ae94c247416188e2560f0911407ff612"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0520-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0520",
-      "source_row_index": 520,
-      "context_id": "context-78938f2291c47143ce25",
-      "debate_id": "26_2000",
-      "source_split": "Train",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "Appeal to popular opinion",
-      "source_span_candidates_en": [
-        [
-          3149,
-          3349
-        ]
-      ],
-      "source_audio_begin_seconds": "3952.4",
-      "source_audio_end_seconds": "3965.0",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "946a8a17b6dd04277ce06ebd1429d0b1a0de4283208f023c51a01b79da4d79c6"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0521-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0521",
-      "source_row_index": 521,
-      "context_id": "context-78938f2291c47143ce25",
-      "debate_id": "26_2000",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          3350,
-          3872
-        ]
-      ],
-      "source_audio_begin_seconds": "3965.0",
-      "source_audio_end_seconds": "4000.04",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "56de2c4ad1173e25246ea8a275ae17cd6382d51234543dbb9fbe827aa7845750"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0529-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0529",
       "source_row_index": 529,
@@ -1994,54 +1259,6 @@
       "source_input_sha256": "faa5943a2f8267b2279981615adf90dda458e39c4025dbed574ec395c8e32792"
     },
     {
-      "id": "mm-used-302ba4900be6-r0544-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0544",
-      "source_row_index": 544,
-      "context_id": "context-348329be811c05cf30cc",
-      "debate_id": "26_2000",
-      "source_split": "Train",
-      "source_label": "Slipperyslope",
-      "source_subcategory": "Slippery slope",
-      "source_span_candidates_en": [
-        [
-          1808,
-          1948
-        ]
-      ],
-      "source_audio_begin_seconds": "2536.8",
-      "source_audio_end_seconds": "2545.24",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "447ee1dca02da6cb65f42c4143500cc0ed3a3de03fee165db55621dbfd280b67"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0556-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0556",
-      "source_row_index": 556,
-      "context_id": "context-21faccc60a74724f68fc",
-      "debate_id": "27_2000",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          2545,
-          2964
-        ]
-      ],
-      "source_audio_begin_seconds": "255.88",
-      "source_audio_end_seconds": "286.12",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "df27f1be6549345e20a96fdfe764c315c6a0436b93365f6fdc846d114be62bdf"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0578-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0578",
       "source_row_index": 578,
@@ -2064,56 +1281,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "8ef6b642023980dea1f86628e54265a74752680341ec287e16da3aaa8e6e43b8"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0582-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0582",
-      "source_row_index": 582,
-      "context_id": "context-2f7141113ee08234f11e",
-      "debate_id": "27_2000",
-      "source_split": "Train",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "Without Evidence",
-      "source_span_candidates_en": [
-        [
-          2383,
-          2575
-        ]
-      ],
-      "source_audio_begin_seconds": "2572.84",
-      "source_audio_end_seconds": "2584.6",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "8d7bd74edfbd7dcd102f9cf6b06f5ee60a7b355a4071c7d9d4f8c0cbca3089cc"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0585-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0585",
-      "source_row_index": 585,
-      "context_id": "context-2e3281319ce96c055346",
-      "debate_id": "27_2000",
-      "source_split": "Train",
-      "source_label": "AppealtoEmotion",
-      "source_subcategory": "Flag waving",
-      "source_span_candidates_en": [
-        [
-          332,
-          400
-        ]
-      ],
-      "source_audio_begin_seconds": "3200.08",
-      "source_audio_end_seconds": "3206.24",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "'Sportsmen' is interpreted in the source's gun-rights context, not as all athletes."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "bf5fecaaa873bb5fe60c0b1ea1f6c1d79737e4d5015b35f648d036598e62019b"
     },
     {
       "id": "mm-used-302ba4900be6-r0592-de-review",
@@ -2240,30 +1407,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "05b6cb07e23f468df484e6d0bd5e3c30b1bcf71d01c86b719b23d533b1e775c2"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0623-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0623",
-      "source_row_index": 623,
-      "context_id": "context-df6318fc935c81b8215c",
-      "debate_id": "28_2000",
-      "source_split": "Train",
-      "source_label": "Slipperyslope",
-      "source_subcategory": "Slippery slope",
-      "source_span_candidates_en": [
-        [
-          3753,
-          3819
-        ]
-      ],
-      "source_audio_begin_seconds": "908.64",
-      "source_audio_end_seconds": "912.28",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "ba55bb31d04cc2ca8bd1f127fa5adafb7a94c21038841dd47fe980c237ac5df4"
     },
     {
       "id": "mm-used-302ba4900be6-r0625-de-review",
@@ -2508,32 +1651,6 @@
       "source_input_sha256": "dd2541ee98faa8dd61ebfd2b6d92b1e2977542e198287ab2e07f4ab3e7feaabd"
     },
     {
-      "id": "mm-used-302ba4900be6-r0684-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0684",
-      "source_row_index": 684,
-      "context_id": "context-332ba94223a20f3fe1e0",
-      "debate_id": "31_2004",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          916,
-          1084
-        ]
-      ],
-      "source_audio_begin_seconds": "3854.12",
-      "source_audio_end_seconds": "3864.76",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "‚Health care‘ wurde als ‚Gesundheitsversorgung‘ übersetzt, nicht stillschweigend auf Krankenversicherung verengt."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "aefaa987a4e54594c1e3da12edb11466b2b0548ce60e5fed3614cfcd896cb701"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0685-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0685",
       "source_row_index": 685,
@@ -2558,32 +1675,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "1147da0b4a42984135c7285c734e0aee2c9b03956d5da75f628ead400dcf95cd"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0697-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0697",
-      "source_row_index": 697,
-      "context_id": "context-8728e4db28161cab3460",
-      "debate_id": "31_2004",
-      "source_split": "Train",
-      "source_label": "Slipperyslope",
-      "source_subcategory": "Slippery slope",
-      "source_span_candidates_en": [
-        [
-          3390,
-          3564
-        ]
-      ],
-      "source_audio_begin_seconds": "5443.96",
-      "source_audio_end_seconds": "5449.84",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "The source's ambiguous 'he' is not silently assigned a new named referent. Full English context is retained for review."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "1c5a488cc985a58fc2256baa9c37aa34f16147bf8beef8e2f7f64a93664254a5"
     },
     {
       "id": "mm-used-302ba4900be6-r0706-de-review",
@@ -2680,30 +1771,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "e963f55cc01c5bc4b6a0661d134a06835a03f6b06ec707541ab46146c37fab17"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0734-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0734",
-      "source_row_index": 734,
-      "context_id": "context-dbfd093928ddaecfbf61",
-      "debate_id": "32_2004",
-      "source_split": "Train",
-      "source_label": "AdHominem",
-      "source_subcategory": "Name-Calling, Labeling",
-      "source_span_candidates_en": [
-        [
-          5264,
-          5336
-        ]
-      ],
-      "source_audio_begin_seconds": "3657.08",
-      "source_audio_end_seconds": "3660.72",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "85aa3f1234e7119e5169403dd5194f06fb4c3dd83f246297e368d9063f181c5c"
     },
     {
       "id": "mm-used-302ba4900be6-r0737-de-review",
@@ -2804,32 +1871,6 @@
       "source_input_sha256": "82e951d0edaffd13b25aaebd0ac835b9d77269621f1d323de00f18698532c1c6"
     },
     {
-      "id": "mm-used-302ba4900be6-r0785-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0785",
-      "source_row_index": 785,
-      "context_id": "context-a4e06637c665a39ec45d",
-      "debate_id": "32_2004",
-      "source_split": "Train",
-      "source_label": "AdHominem",
-      "source_subcategory": "Circumstantial Ad hominem",
-      "source_span_candidates_en": [
-        [
-          5215,
-          5344
-        ]
-      ],
-      "source_audio_begin_seconds": "2899.6",
-      "source_audio_end_seconds": "2910.76",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "'More than one time' remains a count of occasions, not a claim of a higher tax rate."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "20697683da706c44c823960eb560772f15066416f00adc4fb753ef11676f2ef3"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0790-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0790",
       "source_row_index": 790,
@@ -2876,30 +1917,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "7da3bc7832e4da01863d8420aaaf35b25ac1ddf706e2123554d824b53dd1b115"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0825-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0825",
-      "source_row_index": 825,
-      "context_id": "context-ed020feec5f6b7daa975",
-      "debate_id": "29_2004",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          12479,
-          12532
-        ]
-      ],
-      "source_audio_begin_seconds": "3099.44",
-      "source_audio_end_seconds": "3102.2",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "9d8726ac9fd2e699672c09d4ce8cfeae65b3c68dfdbe692236da5e1eaa601b5d"
     },
     {
       "id": "mm-used-302ba4900be6-r0828-de-review",
@@ -3071,30 +2088,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "9b405b46bb6606d0ab356cb8ab4cdc88fd296f5b76d883fd3022c515c6cc81f7"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0877-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0877",
-      "source_row_index": 877,
-      "context_id": "context-a62c4a7ee0086e1d2347",
-      "debate_id": "36_2008",
-      "source_split": "Train",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "False Authority",
-      "source_span_candidates_en": [
-        [
-          20425,
-          20557
-        ]
-      ],
-      "source_audio_begin_seconds": "3700.92",
-      "source_audio_end_seconds": "3708.0",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "c7f4134b07bd799dc2677a7aca119584e09a96e1ac700600252d52431ef973c0"
     },
     {
       "id": "mm-used-302ba4900be6-r0878-de-review",
@@ -3340,30 +2333,6 @@
       "source_input_sha256": "b18b0fe7536b25810757cefecbd3d142886ba4e30da4cd49fff1aef8503b6d98"
     },
     {
-      "id": "mm-used-302ba4900be6-r0948-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0948",
-      "source_row_index": 948,
-      "context_id": "context-1216216af4b71010abda",
-      "debate_id": "39_2012",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          5522,
-          5785
-        ]
-      ],
-      "source_audio_begin_seconds": "3328.52",
-      "source_audio_end_seconds": "3342.84",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "725edf4822901fde64275ca83216821cdf196e9f22b0e74f7786a04c96f47b1b"
-    },
-    {
       "id": "mm-used-302ba4900be6-r0949-de-review",
       "source_case_id": "mm-used-302ba4900be6-r0949",
       "source_row_index": 949,
@@ -3386,30 +2355,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "0ab7e7c42b81bf6b04e37ccaeb48c44faa115eb898f0a46922a3b70abd62e468"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0968-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0968",
-      "source_row_index": 968,
-      "context_id": "context-53535b755d2bdec67edc",
-      "debate_id": "3_1960",
-      "source_split": "Train",
-      "source_label": "AppealtoAuthority",
-      "source_subcategory": "Without Evidence",
-      "source_span_candidates_en": [
-        [
-          659,
-          959
-        ]
-      ],
-      "source_audio_begin_seconds": "937.76",
-      "source_audio_end_seconds": "957.56",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "23052f441e6b2cd771ca23b021c1a152b103079537459b300d85ba4b9d161fc2"
     },
     {
       "id": "mm-used-302ba4900be6-r0971-de-review",
@@ -3436,30 +2381,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "3050eec99e352b61166e88cdda616c90920363cf9addf5bb0cbde7c1a7cdc909"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r0975-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r0975",
-      "source_row_index": 975,
-      "context_id": "context-a2a10b72d425cb8dcb4d",
-      "debate_id": "3_1960",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          460,
-          673
-        ]
-      ],
-      "source_audio_begin_seconds": "1407.64",
-      "source_audio_end_seconds": "1422.24",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "25cc83abec55438ca8152d54f844eba88c0232dcf2d215fd5aab212551435f37"
     },
     {
       "id": "mm-used-302ba4900be6-r0991-de-review",
@@ -3515,30 +2436,6 @@
       "source_input_sha256": "8cb433d7af9f71bcbdee97d9790712052b6751a37fbc5b28e4f9cf90c23740ec"
     },
     {
-      "id": "mm-used-302ba4900be6-r1013-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r1013",
-      "source_row_index": 1013,
-      "context_id": "context-9be736a9f852e992f89a",
-      "debate_id": "1_1960",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          10247,
-          10376
-        ]
-      ],
-      "source_audio_begin_seconds": "706.64",
-      "source_audio_end_seconds": "715.36",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "Preserves five times the wage increase, not five times the wage level. The source snippet excludes its sentence-final period."
-      ],
-      "review_hints": [],
-      "source_input_sha256": "2c93950eafd430273891eb843c36f2da62d2f81a64d2c167daa2a590cf43e776"
-    },
-    {
       "id": "mm-used-302ba4900be6-r1019-de-review",
       "source_case_id": "mm-used-302ba4900be6-r1019",
       "source_row_index": 1019,
@@ -3585,32 +2482,6 @@
       "source_input_sha256": "f51758437aba884aa57d932e4908f0fc4eb2bfb2af1a34de83593c025a6cbe61"
     },
     {
-      "id": "mm-used-302ba4900be6-r1042-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r1042",
-      "source_row_index": 1042,
-      "context_id": "context-63921640a749d1c6504e",
-      "debate_id": "10_1984",
-      "source_split": "Train",
-      "source_label": "FalseCause",
-      "source_subcategory": "False cause",
-      "source_span_candidates_en": [
-        [
-          5133,
-          5457
-        ]
-      ],
-      "source_audio_begin_seconds": "2604.28",
-      "source_audio_end_seconds": "2623.84",
-      "translation_method": "assistant_translation",
-      "translation_notes": [
-        "The source's awkward statistical restatement and tentative 'I think ... something to do with' are retained; no stronger causal conclusion is substituted."
-      ],
-      "review_hints": [
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "ec2966f3194cc473913ccc9af8616e7383af105619ceb9fdd42a25b3875ab66f"
-    },
-    {
       "id": "mm-used-302ba4900be6-r1043-de-review",
       "source_case_id": "mm-used-302ba4900be6-r1043",
       "source_row_index": 1043,
@@ -3633,31 +2504,6 @@
         "full_context_english_only"
       ],
       "source_input_sha256": "6260645d2dd5d22dd51bdfb3b5f9774f412599bba04c63f4feee35830e421ec7"
-    },
-    {
-      "id": "mm-used-302ba4900be6-r1049-de-review",
-      "source_case_id": "mm-used-302ba4900be6-r1049",
-      "source_row_index": 1049,
-      "context_id": "context-62911aca86aed2973b59",
-      "debate_id": "10_1984",
-      "source_split": "Train",
-      "source_label": "AppealtoEmotion",
-      "source_subcategory": "Loaded Language",
-      "source_span_candidates_en": [
-        [
-          4949,
-          4957
-        ]
-      ],
-      "source_audio_begin_seconds": "4617.4400000000005",
-      "source_audio_end_seconds": "4632.76",
-      "translation_method": "assistant_translation",
-      "translation_notes": [],
-      "review_hints": [
-        "very_short_source_fragment",
-        "full_context_english_only"
-      ],
-      "source_input_sha256": "47cfc130dfe9c00b294df4a9cb6360b69fe869b6af70495d5b9b44126ccd9ca9"
     },
     {
       "id": "mm-used-302ba4900be6-r1055-de-review",

@@ -1,2 +1,0 @@
-# Offline dataset/review tests; no GPU/STT dependencies.
-requests

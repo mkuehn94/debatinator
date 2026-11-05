@@ -1,6 +1,6 @@
 # Debate classification fixtures
 
-These are the authoritative Dekarldent source records. They also appear in the [shared dataset](../../datasets/README.md), alongside translated passages and unreviewed research examples. Edit fixtures here, then run `python scripts/build-shared-dataset.py`.
+These are the authoritative Dekarldent source records. All four also appear in the [accepted dataset](../../datasets/README.md), alongside 103 accepted translated passages. Unreviewed research examples were removed. Edit fixtures here, then run `python scripts/build-shared-dataset.py`.
 
 `debate_cases.json` stores timestamped, user-reviewed exchanges for the main classifier in `eval/taxonomy.py`.
 

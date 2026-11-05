@@ -8,16 +8,16 @@
   "properties": {
     "schema_version": {"const": 1},
     "id": {"type": "string", "minLength": 1},
-    "collection": {"enum": ["dekarldent", "mm_used", "research_catalog"]},
+    "collection": {"enum": ["dekarldent", "mm_used"]},
     "language": {"const": "de"},
     "input_kind": {"enum": ["exchange", "passage"]},
-    "text_kind": {"enum": ["caption_based_paraphrase", "assistant_translated_snippet", "editorial_a_b"]},
+    "text_kind": {"enum": ["caption_based_paraphrase", "assistant_translated_snippet"]},
     "label": {
       "type": "object",
       "additionalProperties": false,
       "required": ["namespace", "value", "subcategory", "project_main"],
       "properties": {
-        "namespace": {"enum": ["debinator_main", "mm_used", "fallacy_catalog"]},
+        "namespace": {"enum": ["debinator_main", "mm_used"]},
         "value": {"type": "string", "minLength": 1},
         "subcategory": {"type": ["string", "null"]},
         "project_main": {"type": ["string", "null"]}
@@ -28,8 +28,8 @@
       "additionalProperties": false,
       "required": ["status", "decision", "note", "translation", "correction_de"],
       "properties": {
-        "status": {"enum": ["accepted", "rejected", "uncertain", "pending"]},
-        "decision": {"enum": ["agree", "disagree", "uncertain", "pending"]},
+        "status": {"const": "accepted"},
+        "decision": {"const": "agree"},
         "note": {"type": "string"},
         "translation": {"enum": ["not_applicable", "not_requested", "pending", "faithful", "revise", "uncertain"]},
         "correction_de": {"type": ["string", "null"]}

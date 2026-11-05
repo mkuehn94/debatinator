@@ -1,107 +1,69 @@
-# Shared German debate-pattern dataset
+# Accepted German debate-pattern dataset
 
-**Start here.** One schema combines Dekarldent exchanges, translated MM-USED passages, and research examples without losing their different provenance or review status.
+**107 examples, all explicitly accepted by the user:**
 
-## Current contents
+- **4 Dekarldent exchanges:** 2 `strohmann`, 1 `whataboutism`, 1 `ad_hominem`.
+- **103 translated MM-USED passages:** original source labels and your notes preserved.
 
-| Collection | All | Accepted | Rejected | Uncertain | Pending |
-|---|---:|---:|---:|---:|---:|
-| Dekarldent debate | 4 | 4 | 0 | 0 | 0 |
-| Translated MM-USED | 150 | 103 | 4 | 42 | 1 |
-| Research/teaching/forum catalog | 152 | 0 | 0 | 0 | 152 |
-| **Total** | **306** | **107** | **4** | **42** | **153** |
+Rejected, uncertain, pending and unreviewed research examples have been removed. There is no remaining review queue. Previous research and discarded judgments remain recoverable from git history, not part of the current dataset.
 
-Accepted means the user agreed with the recorded label. It does **not** mean audio-verified, independently fact-checked, representative, or a logical fallacy in every context. No automatic training/evaluation split is assigned.
-
-## Files to use
-
-### Full local dataset
-
-Generated under **`data/datasets/shared/`**, which remains gitignored:
+## Use these files
 
 | File | Contents |
 |---|---|
-| `all.jsonl` | All 306 records, full inputs and provenance |
-| **`accepted.jsonl`** | **107 accepted records, including all four Dekarldent cases** |
-| `rejected.jsonl` | 4 rejected source annotations; **not** automatically neutral examples |
-| `uncertain.jsonl` | 42 context/label uncertainties; excluded from accepted records |
-| `pending.jsonl` | 153 records awaiting judgment |
-| `index.html` | Offline searchable reader; accepted filter selected initially |
-| `manifest.json` | Counts, input hashes, rights and evaluation caveats |
+| **`data/datasets/shared/accepted.jsonl`** | **Complete 107-record dataset, including text and provenance** |
+| `data/datasets/shared/index.html` | Offline searchable reader; every displayed example is accepted |
+| `data/datasets/shared/manifest.json` | Counts, input hashes and source limitations |
+| [`index.jsonl`](index.jsonl) | Committed metadata for the same 107 records; `input: null` |
+| [`schema.json`](schema.json) | Shared JSON Schema; only `accepted` / `agree` records allowed |
+| [`manifest.json`](manifest.json) | Committed counts and source-input hashes |
 
-These are **review buckets**, not train/validation/test partitions. No examples are deleted because a source label was rejected.
+Full imported text stays under gitignored `data/`. No duplicate `all.jsonl` or rejected/uncertain/pending buckets are generated.
 
-### Version-controlled dataset definition
+## Authoritative inputs
 
-- [`schema.json`](schema.json): shared JSON Schema for every JSONL record.
-- [`index.jsonl`](index.jsonl): all 306 metadata records, with `input: null` rather than imported text.
-- [`manifest.json`](manifest.json): deterministic counts and hashes of authoritative inputs.
-- [`inputs/mm_used.json`](inputs/mm_used.json): 150 source identities, source labels/splits, attribution, translation metadata and full-input fingerprints; no imported snippets or context blocks.
-- **[`reviews/mm_used.json`](reviews/mm_used.json)**: authoritative user decisions, notes and optional German corrections. These survive a fresh clone.
-- [`../eval/fixtures/debate_cases.json`](../eval/fixtures/debate_cases.json): authoritative Dekarldent A/B paraphrases and confirmed labels.
-- [`../docs/fallacies/catalog.json`](../docs/fallacies/catalog.json): authoritative unreviewed research examples; linked source metadata remains alongside it.
+- [`../eval/fixtures/debate_cases.json`](../eval/fixtures/debate_cases.json): four confirmed German A/B paraphrases, timestamps and source links.
+- [`inputs/mm_used.json`](inputs/mm_used.json): **103** accepted source identities, original labels/splits, attribution and content fingerprints; no imported text.
+- [`reviews/mm_used.json`](reviews/mm_used.json): **103** explicit agreement decisions and their notes. No rejected or uncertain judgments retained here.
+- `data/datasets/accepted_mm_used.json`: private text, English context and translation provenance for those same 103 accepted passages. Supporting context is evidence, not additional labeled examples.
 
-The shared index is generated, not hand-edited. Original records remain the authoring sources. Existing specialized review pages are retained; they are not competing final datasets.
+Edit source records rather than the generated index. The builder refuses non-agreement judgments, unconfirmed fixtures, duplicate IDs and source/content drift. Future additions require explicit label acceptance and matching source metadata/content fingerprints; they are never included merely because a source annotated them.
 
-## Build and review workflow
+## Build and check
 
-Python 3.10+; shared builder uses only the standard library and never calls a model or network.
+Python 3.10+; standard library only. No model, GPU or network needed.
 
 ```bash
-# With private translation data already installed:
-python scripts/build-translation-review.py
+# With accepted private source text installed:
 python scripts/build-shared-dataset.py
-
-# Verify full local output, without changing files:
-python scripts/build-translation-review.py --check
 python scripts/build-shared-dataset.py --check
 
-# Fresh clone: build/check the committed metadata without private source text:
+# Fresh clone without private text:
 python scripts/build-shared-dataset.py --metadata-only --check
-```
 
-To record a new MM-USED review, export from `data/datasets/translation_review/index.html`, then:
-
-```bash
-python scripts/build-translation-review.py --import-review ~/Downloads/mm-used-de-review-150-v3-review.json
-python scripts/build-shared-dataset.py
-```
-
-This updates `datasets/reviews/mm_used.json`, the review page, and shared outputs after validation. Browser edits alone do not persist to the repo. Custom `--directory` review builds keep their review file inside that custom directory.
-
-Source text, translation content, and provenance must match the committed MM snapshot. A genuine translation/content change needs an explicit snapshot refresh (`mm_snapshot()` in the shared builder) and review of the resulting diff; the builder refuses silent drift. New source examples additionally require updating the translation selection/batch and review export. It never invents new German translations from hashes.
-
-## Record contract
-
-Every record follows the same schema:
-
-- `id`: stable, collection-prefixed ID; `source.record_id` preserves the original identity.
-- `input_kind`: `exchange` (A/B) or `passage` (single translated span). MM passages have `a: null`, `b: null`; no invented opponent or speaker.
-- `input`: **only** model-visible text, English originals/context, and explicitly cropped translated windows. Metadata index uses `null`. Rationales and labels stay outside input.
-- `text_kind`: distinguishes caption-based paraphrases, assistant translations and editorial teaching/forum adaptations. None are silently represented as verbatim German debate audio.
-- `label`: original namespace, value and subcategory. `project_main` is populated **only** for explicitly confirmed main-taxonomy fixtures.
-- `review`: accepted/rejected/uncertain/pending decision, exact note, translation-review metadata and optional correction. Alternative labels in notes are not automatic reannotations. Optional `correction_de` is retained separately, not silently substituted for original `input.text_de`.
-- `source`: source pointers, original split, and leakage group IDs. Resolve `metadata_file` from repo root; `#sources` denotes the source registry in that JSON file.
-- `evidence`: timestamps, spans, editorial rationales, source assessments and verification limits. **Do not feed this to a scored classifier.**
-- `source_input_sha256`: canonical JSON hash of the original input, including context. This detects accidental source/translation drift.
-
-### Labels are namespaced on purpose
-
-`debinator_main:strohmann` and `mm_used:AppealtoAuthority` are not interchangeable target classes. Tu quoque is not automatically whataboutism; slogans and emotional appeals are not automatically fallacies. The 107 accepted records are useful review data, **not 107 ready-made d1 MAIN benchmark cases**. Only the four Dekarldent fixtures currently have confirmed `project_main` labels and A/B structure.
-
-Keep all records sharing any `source.group_ids` together when creating future partitions. Preserve MM-USED's `source.source_split`; English originals and their German translations must not land in different partitions. Catalog controls remain unreviewed, so they are not established false-positive controls.
-
-## Rights and portability
-
-No blanket license is assigned to this mixed collection. Source-specific attribution and rights remain in their registries. MM-USED declares CC BY 4.0 while its USED upstream declares CC BY-NC-SA 4.0; clarify the chain before publishing text or using it commercially. See [dataset research](../docs/datasets/ENGLISH_DATASETS.md).
-
-**A git clone contains the shared schema, complete metadata/decisions, Dekarldent paraphrases and research adaptations—not the private MM-USED translations or English context blocks.** To recreate full local outputs, restore the existing `data/datasets/translation_review/dataset.json`; to also rebuild its review page, restore `data/datasets/mm_used/` plus the translation review's selection and translation inputs. Keep a separate backup of ignored `data/`. A metadata-only build is not a full-text dataset export.
-
-## Tests
-
-```bash
-python -m pip install -r requirements-dev.txt
 python -m unittest discover -s tests -v
 ```
 
-Core shared/schema/review tests work without private data. Private translation/full-output integration tests explicitly skip if inputs are absent. Node.js is optional for the translation UI's JavaScript runtime test; no model server or GPU is required. Existing d1 snippet accuracy/latency measurements are unchanged.
+Core tests work without private data. Full-text integration test skips explicitly if the accepted private text is missing. Node.js is optional for the offline reader's JavaScript test.
+
+## Record contract and limitations
+
+- `id` is stable and collection-prefixed; `source.record_id` preserves original identity.
+- `input_kind` distinguishes **exchange** (A/B) from **passage**. MM passages have no invented A/B opponent or speaker.
+- `input` contains text and context only; labels, rationales and judgments stay outside it. Committed metadata uses `input: null`.
+- `text_kind` distinguishes caption-based German paraphrases from assistant translations. Neither implies a verbatim, audio-verified German transcript.
+- `label` preserves namespace, value and subcategory. **Only the four Dekarldent cases have confirmed `project_main` labels.** MM-USED categories are not silently mapped to the classifier's taxonomy.
+- `review` contains acceptance, exact note and translation metadata. Optional German corrections remain separate from original `input.text_de`; alternative categories in notes are not automatic reannotations.
+- `source` retains attribution pointers, original split and leakage group IDs. Resolve `metadata_file` from repo root; `#sources` means that JSON file's source registry.
+- `evidence` contains timestamps, rationales and verification limits. Do not feed label rationales to a scored classifier.
+- `source_input_sha256` detects drift in original text/context.
+
+Acceptance means agreement with the recorded label—not audio verification, factual endorsement, independent annotation, or proof that every source category is a logical fallacy. Slogans/emotional appeals are broader rhetorical categories. The 107 examples are **not 107 ready-made d1 MAIN benchmark cases**. No reviewed neutral controls or new train/test splits are supplied.
+
+Preserve MM-USED's `source.source_split` and keep records sharing `source.group_ids` together in any future partition. English originals and German translations must not be placed in different evaluation splits.
+
+## Rights and backup
+
+No blanket dataset license is assigned. MM-USED declares CC BY 4.0; its USED upstream declares CC BY-NC-SA 4.0. Attribution remains in `inputs/mm_used.json`; clarify the chain before publishing imported text or using it commercially. See [source/rights notes](../docs/datasets/ENGLISH_DATASETS.md).
+
+**Git stores schema, accepted metadata/decisions and the four Dekarldent paraphrases—not private MM-USED text.** Back up `data/datasets/accepted_mm_used.json` separately. Restoring that file allows full local rebuilds. Hashes alone cannot restore translations; a metadata-only build is not a full-text dataset export.

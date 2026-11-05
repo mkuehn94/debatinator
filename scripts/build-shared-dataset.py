@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build shared review-aware dataset; imported text stays under ignored data/."""
+"""Build accepted-only debate dataset; imported text stays under ignored data/."""
 import argparse
 from collections import Counter
 from hashlib import sha256
@@ -10,14 +10,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORY = ROOT / 'datasets'
 LOCAL = ROOT / 'data/datasets/shared'
-TRANSLATIONS = ROOT / 'data/datasets/translation_review/dataset.json'
-STATUSES = ('accepted', 'rejected', 'uncertain', 'pending')
+TRANSLATIONS = ROOT / 'data/datasets/accepted_mm_used.json'
 TRANSLATION_STATES = ('not_requested', 'pending', 'faithful', 'revise', 'uncertain')
-DECISIONS = {'agree': 'accepted', 'disagree': 'rejected', 'uncertain': 'uncertain', 'pending': 'pending'}
 INPUTS = {
     'fixtures': 'eval/fixtures/debate_cases.json',
-    'catalog': 'docs/fallacies/catalog.json',
-    'catalog_sources': 'docs/fallacies/sources.json',
     'mm_index': 'datasets/inputs/mm_used.json',
     'reviews': 'datasets/reviews/mm_used.json',
 }
@@ -65,15 +61,15 @@ def validated_reviews(index, payload):
     for entry in payload['decisions']:
         if (not isinstance(entry, dict) or not isinstance(entry.get('id'), str)
                 or entry['id'] not in ids or entry['id'] in decisions
-                or not isinstance(entry.get('label'), str) or entry['label'] not in DECISIONS
+                or entry.get('label') != 'agree'
                 or entry.get('translation', 'not_requested') not in TRANSLATION_STATES
                 or not isinstance(entry.get('note'), str)
                 or 'correction_de' not in entry
                 or not (entry['correction_de'] is None or isinstance(entry['correction_de'], str))):
-            raise ValueError('Invalid review decision or duplicate/unknown ID')
+            raise ValueError('Only explicitly accepted reviews with valid, unique IDs are allowed')
         decisions[entry['id']] = entry
     if set(decisions) != ids:
-        raise ValueError('Review export must cover every indexed passage, including pending entries')
+        raise ValueError('Accepted reviews must cover every indexed passage')
     return decisions
 
 
@@ -84,18 +80,19 @@ def record(identifier, collection, kind, text_kind, label, review, source, evide
             'input': content}
 
 
-def assemble(fixtures, catalog, index, reviews, translated=None, catalog_sources=None):
-    """One schema, not one forced taxonomy. Only explicit agreement is accepted."""
+def assemble(fixtures, index, reviews, translated=None):
+    """One schema, not one forced taxonomy. Refuse unaccepted annotations."""
+    if fixtures['review']['label_status'] != 'user_confirmed':
+        raise ValueError('Only user-confirmed fixtures are allowed')
     records = []
     for case in fixtures['cases']:
-        confirmed = fixtures['review']['label_status'] == 'user_confirmed'
         content = {'a': case['a'], 'b': case['b'], 'context_de': case.get('context'),
                    'text_de': None, 'text_en': None, 'context_en': None, 'translated_window': None}
         records.append(record(
             'dekarldent:' + case['id'], 'dekarldent', 'exchange', fixtures['text_kind'],
             {'namespace': 'debinator_main', 'value': case['expected_main'], 'subcategory': None,
-             'project_main': case['expected_main'] if confirmed else None},
-            {'status': 'accepted' if confirmed else 'pending', 'decision': 'agree' if confirmed else 'pending',
+             'project_main': case['expected_main']},
+            {'status': 'accepted', 'decision': 'agree',
              'note': '', 'translation': 'not_applicable', 'correction_de': None},
             {'record_id': case['id'], 'collection_file': INPUTS['fixtures'],
              'metadata_file': INPUTS['fixtures'] + '#sources', 'source_ids': [case['source_id']],
@@ -117,9 +114,9 @@ def assemble(fixtures, catalog, index, reviews, translated=None, catalog_sources
             'mm_used:' + row['source_case_id'], 'mm_used', 'passage', 'assistant_translated_snippet',
             {'namespace': 'mm_used', 'value': row['source_label'], 'subcategory': row['source_subcategory'],
              'project_main': None},
-            {'status': DECISIONS[decision['label']], 'decision': decision['label'], 'note': decision['note'],
+            {'status': 'accepted', 'decision': 'agree', 'note': decision['note'],
              'translation': decision.get('translation', 'not_requested'), 'correction_de': decision['correction_de']},
-            {'record_id': row['id'], 'collection_file': 'data/datasets/translation_review/dataset.json',
+            {'record_id': row['id'], 'collection_file': 'data/datasets/accepted_mm_used.json',
              'metadata_file': INPUTS['mm_index'] + '#sources', 'source_ids': ['mm_used'],
              'source_sha256': index['source_sha256'], 'source_split': row['source_split'],
              'group_ids': ['mm_used:debate:' + row['debate_id'], 'mm_used:context:' + row['context_id']]},
@@ -127,31 +124,6 @@ def assemble(fixtures, catalog, index, reviews, translated=None, catalog_sources
              ('id', 'source_label', 'source_subcategory', 'source_input_sha256')}},
             content, row['source_input_sha256']))
 
-    for pattern in catalog['patterns']:
-        for example in pattern['examples']:
-            if example['review_status'] != 'needs_user_review':
-                raise ValueError('Catalog promotion requires explicit user-review adapter')
-            content = {'a': example['a'], 'b': example['b'], 'context_de': example.get('context'),
-                       'text_de': None, 'text_en': None, 'context_en': None, 'translated_window': None}
-            groups = ['catalog:source:' + key for key in example['source_ids']]
-            if catalog_sources is not None:
-                for source_id in example['source_ids']:
-                    source = catalog_sources[source_id]
-                    url = source.get('canonical_url') or source['url']
-                    groups.append('catalog:url:' + sha256(url.encode()).hexdigest())
-                groups = sorted(set(groups))
-            if example.get('near_duplicate_group'):
-                groups.append('catalog:duplicate:' + example['near_duplicate_group'])
-            records.append(record(
-                'catalog:' + example['id'], 'research_catalog', 'exchange', 'editorial_a_b',
-                {'namespace': 'fallacy_catalog', 'value': example['proposed_label'], 'subcategory': None,
-                 'project_main': None},
-                {'status': 'pending', 'decision': 'pending', 'note': '',
-                 'translation': 'not_applicable', 'correction_de': None},
-                {'record_id': example['id'], 'collection_file': INPUTS['catalog'],
-                 'metadata_file': INPUTS['catalog_sources'], 'source_ids': example['source_ids'],
-                 'source_split': None, 'group_ids': groups},
-                {key: value for key, value in example.items() if key not in ('id', 'a', 'b', 'context')}, content))
     records.sort(key=lambda item: item['id'])
     validate_records(records, require_text=translated is not None)
     return records
@@ -163,8 +135,8 @@ def validate_records(records, require_text=False):
         if row['id'] in ids:
             raise ValueError('Duplicate shared record ID')
         ids.add(row['id'])
-        if row['review']['status'] != DECISIONS.get(row['review']['decision']):
-            raise ValueError('Review status/decision mismatch')
+        if row['review']['status'] != 'accepted' or row['review']['decision'] != 'agree':
+            raise ValueError('Dataset contains an unaccepted record')
         if row['label']['project_main'] is not None and (
                 row['label']['namespace'] != 'debinator_main' or row['review']['status'] != 'accepted'):
             raise ValueError('Project label requires explicit project-taxonomy confirmation')
@@ -195,12 +167,13 @@ def metadata(records):
 
 
 def manifest(records, input_hashes):
-    return {'schema_version': 1, 'purpose': 'Shared review-aware German debate-pattern dataset; not a gold benchmark.',
-            'counts': {'all': len(records), 'by_status': {key: sum(r['review']['status'] == key for r in records) for key in STATUSES},
+    return {'schema_version': 1, 'purpose': 'Accepted-only German debate-pattern dataset; not a gold benchmark.',
+            'counts': {'all': len(records), 'by_status': {'accepted': len(records)},
                        'by_collection': dict(sorted(Counter(r['collection'] for r in records).items()))},
             'input_sha256': input_hashes,
             'rights': 'Mixed source-specific rights; no blanket dataset license. MM-USED text stays local pending upstream license clarification.',
-            'partitions': 'Review buckets only, not train/test splits. Preserve source_split and group_ids when designing evaluation.',
+            'selection': 'Only explicit user agreement retained. Rejected, uncertain, pending and research-catalog records removed.',
+            'partitions': 'No train/test splits assigned. Preserve source_split and group_ids when designing evaluation.',
             'labels': 'Namespaced source labels. Only Dekarldent fixtures have confirmed project_main labels. Agreement is not audio verification.',
             'text_policy': 'Tracked index has input=null. Full inputs and contexts are generated only under ignored data/datasets/shared/.',
             'local_directory': 'data/datasets/shared'}
@@ -225,17 +198,15 @@ def render(records):
                      '<details><summary>Provenienz / Bewertung</summary><pre>'
                      + h(json.dumps({key: value for key, value in row.items() if key != 'input'}, ensure_ascii=False, indent=2))
                      + '</pre></details></article>')
-    options = ''.join(f'<option value="{value}"' + (' selected' if value == 'accepted' else '')
-                      + f'>{value}</option>' for value in STATUSES)
     return '''<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
 <title>Debatinator – gemeinsamer Datensatz</title><style>
 body{font:16px/1.5 system-ui;max-width:1000px;margin:2rem auto;padding:1rem}article{border:1px solid #bbb;padding:1rem;margin:1rem 0}h2{font-size:1rem}p,pre{white-space:pre-wrap;overflow-wrap:anywhere}input,select{font:inherit;padding:.5rem}[hidden]{display:none!important}
 </style><h1>Gemeinsamer Datensatz</h1><p>Beschriftungen behalten ihr Quellsystem. „Accepted“ bedeutet Zustimmung zum Label, nicht Audio- oder Faktenprüfung. Keine automatisch erzeugten Trainings-/Testsplits.</p>
-<p>Nur Leseansicht. MM-USED-Bewertungen ändern: <a href="../translation_review/index.html">Prüfseite</a>. Entscheidungen danach exportieren und importieren.</p>
-<input id="search" type="search" aria-label="Suche" placeholder="Text, ID, Label, Notiz"><select id="status" aria-label="Prüfstatus"><option value="">Alle</option>''' + options + '''</select><p id="count" aria-live="polite"></p>''' + '\n'.join(cards) + '''<script>
+<p>Nur ausdrücklich akzeptierte Beispiele. Unklare, abgelehnte und ungeprüfte Beispiele wurden entfernt.</p>
+<input id="search" type="search" aria-label="Suche" placeholder="Text, ID, Label, Notiz"><p id="count" aria-live="polite"></p>''' + '\n'.join(cards) + '''<script>
 const cards=[...document.querySelectorAll('article')];
-function filter(){const q=document.getElementById('search').value.toLocaleLowerCase(),s=document.getElementById('status').value;let n=0;for(const c of cards){c.hidden=!!((s&&c.dataset.status!==s)||(q&&!c.textContent.toLocaleLowerCase().includes(q)));if(!c.hidden)n++;}document.getElementById('count').textContent=`${n} / ${cards.length}`;}
-for(const id of ['search','status'])document.getElementById(id).addEventListener('input',filter);filter();
+function filter(){const q=document.getElementById('search').value.toLocaleLowerCase();let n=0;for(const c of cards){c.hidden=!!(q&&!c.textContent.toLocaleLowerCase().includes(q));if(!c.hidden)n++;}document.getElementById('count').textContent=`${n} / ${cards.length}`;}
+document.getElementById('search').addEventListener('input',filter);filter();
 </script></html>
 '''
 
@@ -261,15 +232,12 @@ def main():
             if not TRANSLATIONS.exists():
                 raise ValueError('Private translations missing. Restore local data/ or use --metadata-only; see datasets/README.md')
             translated = json.loads(TRANSLATIONS.read_text(encoding='utf-8'))
-        records = assemble(inputs['fixtures'], inputs['catalog'], inputs['mm_index'], inputs['reviews'],
-                           translated, inputs['catalog_sources'])
+        records = assemble(inputs['fixtures'], inputs['mm_index'], inputs['reviews'], translated)
         hashes = {path: sha256((ROOT / path).read_bytes()).hexdigest() for path in INPUTS.values()}
         summary = manifest(records, hashes)
         outputs = {DIRECTORY / 'index.jsonl': jsonl(metadata(records)), DIRECTORY / 'manifest.json': json_text(summary)}
         if not args.metadata_only:
-            outputs[LOCAL / 'all.jsonl'] = jsonl(records)
-            for status in STATUSES:
-                outputs[LOCAL / f'{status}.jsonl'] = jsonl([r for r in records if r['review']['status'] == status])
+            outputs[LOCAL / 'accepted.jsonl'] = jsonl(records)
             outputs[LOCAL / 'index.html'] = render(records)
             outputs[LOCAL / 'manifest.json'] = json_text(summary)
         for path, text in outputs.items():

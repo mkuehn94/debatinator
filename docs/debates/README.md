@@ -1,7 +1,7 @@
-# Debate source and annotation notes
+# Dekarldent debate provenance
 
-- [Moderator-free source shortlist](DEBATE_SOURCES.md)
-- [Dekarldent vs. viewer: analysis and user confirmations](DEBATE_ANALYSIS_EWXTVzXEl48.md)
-- [Earlier television-duel candidates](DEBATE_EXAMPLES.md)
+- [Caption analysis and user confirmations](DEBATE_ANALYSIS_EWXTVzXEl48.md)
+- [Four accepted A/B fixtures](../../eval/fixtures/debate_cases.json)
+- [Accepted dataset](../../datasets/README.md)
 
-These preserve research history, including initial uncertainties. Authoritative user-confirmed Dekarldent exchanges live in [`eval/fixtures/debate_cases.json`](../../eval/fixtures/debate_cases.json); the four fixtures feed the [shared dataset](../../datasets/README.md). Earlier candidate notes do not override those explicit judgments. Caption-based analysis is not audio verification.
+The analysis document preserves initial candidate judgments as source history; only the four explicitly confirmed fixtures enter the dataset. Caption-based paraphrases are not verbatim/audio-verified transcripts. Earlier source shortlists and unreviewed television-duel candidates were removed.

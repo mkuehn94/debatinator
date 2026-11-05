@@ -1,8 +1,9 @@
-"""Shared schema/review tests run offline, including on a clone without data/."""
+"""Accepted-only dataset checks; core tests work without private source text."""
 import copy
 import importlib.util
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import unittest
@@ -20,8 +21,7 @@ class SharedDatasetTests(unittest.TestCase):
 
     def build(self, **overrides):
         data = {**self.inputs, **overrides}
-        return shared.assemble(data['fixtures'], data['catalog'], data['mm_index'], data['reviews'],
-                               catalog_sources=data['catalog_sources'])
+        return shared.assemble(data['fixtures'], data['mm_index'], data['reviews'])
 
     def tiny_translations(self):
         index = self.inputs['mm_index']
@@ -36,19 +36,18 @@ class SharedDatasetTests(unittest.TestCase):
                                     'note': 'Alternative category?', 'correction_de': 'Optionale Korrektur'}]}
         return snapshot, decisions, translated
 
-    def test_all_inputs_unified_with_explicit_review_buckets(self):
+    def test_only_107_accepted_records_remain(self):
         rows = self.build()
-        self.assertEqual(len(rows), 306)
-        self.assertEqual(len({row['id'] for row in rows}), 306)
-        counts = {status: sum(row['review']['status'] == status for row in rows) for status in shared.STATUSES}
-        self.assertEqual(counts, {'accepted': 107, 'rejected': 4, 'uncertain': 42, 'pending': 153})
+        self.assertEqual(len(rows), 107)
+        self.assertEqual(len({row['id'] for row in rows}), 107)
+        self.assertEqual(sum(row['collection'] == 'dekarldent' for row in rows), 4)
+        self.assertEqual(sum(row['collection'] == 'mm_used' for row in rows), 103)
+        self.assertTrue(all(row['review']['status'] == 'accepted' and row['review']['decision'] == 'agree' for row in rows))
         shared.validate_records(rows)
 
     def test_dekarldent_inputs_labels_and_evidence_preserved(self):
-        fixtures = self.inputs['fixtures']
         rows = [row for row in self.build() if row['collection'] == 'dekarldent']
-        self.assertEqual(len(rows), 4)
-        originals = {case['id']: case for case in fixtures['cases']}
+        originals = {case['id']: case for case in self.inputs['fixtures']['cases']}
         for row in rows:
             original = originals[row['source']['record_id']]
             self.assertEqual(row['input']['a'], original['a'])
@@ -60,18 +59,24 @@ class SharedDatasetTests(unittest.TestCase):
             self.assertNotIn('rationale', row['input'])
             self.assertEqual(row['evidence']['rationale'], original['rationale'])
 
-    def test_unconfirmed_fixture_not_silently_accepted(self):
+    def test_unconfirmed_fixture_rejected(self):
         fixtures = copy.deepcopy(self.inputs['fixtures'])
         fixtures['review']['label_status'] = 'needs_user_review'
-        rows = [row for row in self.build(fixtures=fixtures) if row['collection'] == 'dekarldent']
-        self.assertTrue(all(row['review']['status'] == 'pending' and row['label']['project_main'] is None for row in rows))
+        with self.assertRaisesRegex(ValueError, 'Only user-confirmed'):
+            self.build(fixtures=fixtures)
 
-    def test_review_rejections_notes_and_source_labels_not_reinterpreted(self):
+    def test_nonaccepted_reviews_cannot_reenter_dataset(self):
+        for label in ['pending', 'uncertain', 'disagree']:
+            payload = copy.deepcopy(self.inputs['reviews'])
+            payload['decisions'][0]['label'] = label
+            with self.subTest(label=label), self.assertRaisesRegex(ValueError, 'Only explicitly accepted'):
+                self.build(reviews=payload)
+
+    def test_accepted_notes_source_labels_and_splits_preserved(self):
         rows = [row for row in self.build() if row['collection'] == 'mm_used']
         decisions = {row['id']: row for row in self.inputs['reviews']['decisions']}
         for row in rows:
             decision = decisions[row['source']['record_id']]
-            self.assertEqual(row['review']['status'], shared.DECISIONS[decision['label']])
             self.assertEqual(row['review']['note'], decision['note'])
             self.assertIsNone(row['label']['project_main'])
             self.assertIsNone(row['input'])
@@ -80,33 +85,6 @@ class SharedDatasetTests(unittest.TestCase):
         noted = next(row for row in rows if row['review']['note'] == 'AppealToEmotion')
         self.assertEqual(noted['label']['value'], 'AppealtoAuthority')
         self.assertEqual(noted['review']['status'], 'accepted')
-        rejected = next(row for row in rows if row['review']['note'] == 'anekdotische Evidenz')
-        self.assertEqual(rejected['review']['status'], 'rejected')
-        self.assertNotEqual(rejected['label']['value'], 'sachlich')
-
-    def test_research_including_controls_stays_pending(self):
-        rows = [row for row in self.build() if row['collection'] == 'research_catalog']
-        self.assertEqual(len(rows), 152)
-        self.assertTrue(all(row['review']['status'] == 'pending' for row in rows))
-        self.assertTrue(any(row['evidence']['assessment'] == 'not_fallacious' for row in rows))
-        catalog = copy.deepcopy(self.inputs['catalog'])
-        catalog['patterns'][0]['examples'][0]['review_status'] = 'gold'
-        with self.assertRaisesRegex(ValueError, 'explicit user-review'):
-            self.build(catalog=catalog)
-
-    def test_source_aliases_have_common_leakage_group(self):
-        sources = copy.deepcopy(self.inputs['catalog_sources'])
-        catalog = copy.deepcopy(self.inputs['catalog'])
-        first, second = catalog['patterns'][0]['examples'][:2]
-        sources['alias-one'] = {'canonical_url': 'https://example.org/same-page'}
-        sources['alias-two'] = {'canonical_url': 'https://example.org/same-page'}
-        first['source_ids'] = ['alias-one']
-        second['source_ids'] = ['alias-two']
-        rows = self.build(catalog=catalog, catalog_sources=sources)
-        a = next(row for row in rows if row['id'] == 'catalog:' + first['id'])
-        b = next(row for row in rows if row['id'] == 'catalog:' + second['id'])
-        common = set(a['source']['group_ids']) & set(b['source']['group_ids'])
-        self.assertTrue(any(group.startswith('catalog:url:') for group in common))
 
     def test_metadata_has_no_input_text_and_matches_record_schema(self):
         rows = shared.metadata(self.build())
@@ -116,13 +94,14 @@ class SharedDatasetTests(unittest.TestCase):
             self.assertEqual(set(row), set(schema['required']))
             self.assertEqual(set(row['review']), set(schema['properties']['review']['required']))
             self.assertRegex(row['source_input_sha256'], r'^[a-f0-9]{64}$')
+        self.assertEqual(schema['properties']['review']['properties']['status'], {'const': 'accepted'})
         shared.validate_records(rows)
         with self.assertRaisesRegex(ValueError, 'missing input'):
             shared.validate_records(rows, require_text=True)
 
     def test_full_passage_retains_context_without_fabricating_exchange(self):
         snapshot, decisions, translated = self.tiny_translations()
-        rows = shared.assemble(self.inputs['fixtures'], self.inputs['catalog'], snapshot, decisions, translated)
+        rows = shared.assemble(self.inputs['fixtures'], snapshot, decisions, translated)
         row = next(row for row in rows if row['collection'] == 'mm_used')
         self.assertIsNone(row['input']['a'])
         self.assertIsNone(row['input']['b'])
@@ -134,7 +113,7 @@ class SharedDatasetTests(unittest.TestCase):
         shared.validate_records(rows, require_text=True)
         translated['examples'][0]['text_de'] = 'Changed.'
         with self.assertRaisesRegex(ValueError, 'differs from tracked'):
-            shared.assemble(self.inputs['fixtures'], self.inputs['catalog'], snapshot, decisions, translated)
+            shared.assemble(self.inputs['fixtures'], snapshot, decisions, translated)
 
     def test_mismatched_missing_duplicate_or_invalid_reviews_rejected(self):
         valid = self.inputs['reviews']
@@ -147,11 +126,10 @@ class SharedDatasetTests(unittest.TestCase):
                    dict(valid, decisions=[dict(entry, note=None)]),
                    dict(valid, decisions=[dict(entry, correction_de=123)])]
         for payload in invalid:
-            with self.subTest(payload=payload):
-                with self.assertRaises(ValueError):
-                    self.build(reviews=payload)
+            with self.subTest(payload=payload), self.assertRaises(ValueError):
+                self.build(reviews=payload)
 
-    def test_validator_blocks_duplicate_ids_and_accidental_project_mapping(self):
+    def test_validator_blocks_duplicates_unaccepted_and_accidental_project_mapping(self):
         rows = self.build()
         with self.assertRaisesRegex(ValueError, 'Duplicate'):
             shared.validate_records([rows[0], rows[0]])
@@ -160,30 +138,54 @@ class SharedDatasetTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'explicit project-taxonomy'):
             shared.validate_records([row])
         row = copy.deepcopy(rows[0])
-        row['review']['status'] = 'rejected'
-        with self.assertRaisesRegex(ValueError, 'status/decision'):
+        row['review']['status'] = 'uncertain'
+        with self.assertRaisesRegex(ValueError, 'unaccepted record'):
             shared.validate_records([row])
 
-    def test_shared_html_escapes_untrusted_notes_and_starts_with_accepted_filter(self):
+    def test_shared_html_escapes_notes_and_has_no_review_queue(self):
         snapshot, decisions, translated = self.tiny_translations()
         decisions['decisions'][0]['note'] = '<script>alert(1)</script>'
-        rows = shared.assemble(self.inputs['fixtures'], self.inputs['catalog'], snapshot, decisions, translated)
+        rows = shared.assemble(self.inputs['fixtures'], snapshot, decisions, translated)
         page = shared.render(rows)
         self.assertNotIn('<script>alert(1)</script>', page)
         self.assertIn('&lt;script&gt;alert(1)&lt;/script&gt;', page)
-        self.assertIn('<option value="accepted" selected>', page)
+        self.assertNotIn('id="status"', page)
+        self.assertNotIn('translation_review/index.html', page)
+        self.assertEqual(page.count('<article '), len(rows))
         self.assertNotRegex(page, r'<(?:script|link|img)[^>]+(?:src|href)=["\']https?://')
+
+    @unittest.skipUnless(shutil.which('node'), 'Node.js required for reader runtime test')
+    def test_reader_search_runtime(self):
+        snapshot, decisions, translated = self.tiny_translations()
+        page = shared.render(shared.assemble(self.inputs['fixtures'], snapshot, decisions, translated))
+        script = page.split('<script>', 1)[1].split('</script>', 1)[0]
+        setup = '''
+const assert=require('node:assert/strict');
+const entries=[{textContent:'Alpha'},{textContent:'Beta'}];
+const search={value:'',addEventListener(){}},count={textContent:''};
+const document={querySelectorAll:()=>entries,getElementById:id=>({search,count})[id]};
+'''
+        checks = '''
+assert.equal(count.textContent,'2 / 2');
+search.value='ALPHA';filter();assert.equal(count.textContent,'1 / 2');
+assert.equal(entries[0].hidden,false);assert.equal(entries[1].hidden,true);
+search.value='missing';filter();assert.equal(count.textContent,'0 / 2');
+'''
+        result = subprocess.run(['node'], input=setup + script + checks, capture_output=True, text=True, timeout=15)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_tracked_metadata_reproducible_without_private_corpus(self):
         result = subprocess.run([sys.executable, str(ROOT / 'scripts/build-shared-dataset.py'), '--metadata-only', '--check'],
                                 capture_output=True, text=True, timeout=15)
         self.assertEqual(result.returncode, 0, result.stderr)
 
-    @unittest.skipUnless(shared.TRANSLATIONS.exists() and (shared.LOCAL / 'all.jsonl').exists(), 'Private shared dataset not installed')
-    def test_local_full_outputs_current(self):
+    @unittest.skipUnless(shared.TRANSLATIONS.exists() and (shared.LOCAL / 'accepted.jsonl').exists(), 'Private shared dataset not installed')
+    def test_local_full_outputs_current_and_discarded_buckets_absent(self):
         result = subprocess.run([sys.executable, str(ROOT / 'scripts/build-shared-dataset.py'), '--check'],
                                 capture_output=True, text=True, timeout=15)
         self.assertEqual(result.returncode, 0, result.stderr)
+        for name in ['all.jsonl', 'rejected.jsonl', 'uncertain.jsonl', 'pending.jsonl']:
+            self.assertFalse((shared.LOCAL / name).exists(), name)
 
 
 if __name__ == '__main__':
