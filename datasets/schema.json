@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:debatinator:shared-record:v1",
+  "title": "Debatinator shared dataset record (full text or metadata index)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "collection", "language", "input_kind", "text_kind", "label", "review", "source", "evidence", "source_input_sha256", "input"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "collection": {"enum": ["dekarldent", "mm_used", "research_catalog"]},
+    "language": {"const": "de"},
+    "input_kind": {"enum": ["exchange", "passage"]},
+    "text_kind": {"enum": ["caption_based_paraphrase", "assistant_translated_snippet", "editorial_a_b"]},
+    "label": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["namespace", "value", "subcategory", "project_main"],
+      "properties": {
+        "namespace": {"enum": ["debinator_main", "mm_used", "fallacy_catalog"]},
+        "value": {"type": "string", "minLength": 1},
+        "subcategory": {"type": ["string", "null"]},
+        "project_main": {"type": ["string", "null"]}
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "decision", "note", "translation", "correction_de"],
+      "properties": {
+        "status": {"enum": ["accepted", "rejected", "uncertain", "pending"]},
+        "decision": {"enum": ["agree", "disagree", "uncertain", "pending"]},
+        "note": {"type": "string"},
+        "translation": {"enum": ["not_applicable", "not_requested", "pending", "faithful", "revise", "uncertain"]},
+        "correction_de": {"type": ["string", "null"]}
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["record_id", "collection_file", "metadata_file", "source_ids", "source_split", "group_ids"],
+      "properties": {
+        "record_id": {"type": "string"},
+        "collection_file": {"type": "string"},
+        "metadata_file": {"type": "string"},
+        "source_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "source_split": {"type": ["string", "null"]},
+        "group_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "evidence": {"type": "object"},
+    "source_input_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "input": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["a", "b", "context_de", "text_de", "text_en", "context_en", "translated_window"],
+          "properties": {
+            "a": {"type": ["string", "null"]},
+            "b": {"type": ["string", "null"]},
+            "context_de": {"type": ["string", "null"]},
+            "text_de": {"type": ["string", "null"]},
+            "text_en": {"type": ["string", "null"]},
+            "context_en": {"type": ["string", "null"]},
+            "translated_window": {"type": ["object", "null"]}
+          }
+        }
+      ]
+    }
+  }
+}

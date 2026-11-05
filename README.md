@@ -15,6 +15,9 @@ Runs on **Windows/Linux (llama.cpp, CUDA)** and **macOS (MLX or llama.cpp Metal)
 
 - Concept: [docs/CONCEPT.md](docs/CONCEPT.md)
 - Measurements so far: [docs/RESULTS.md](docs/RESULTS.md)
+- **Shared dataset: [datasets/README.md](datasets/README.md)** — 306 records, 107 accepted (including 4 Dekarldent exchanges); shared schema, tracked review decisions, and local full-text exports.
+- Research: [German example catalog](docs/fallacies/README.md), [English dataset/rights research](docs/datasets/ENGLISH_DATASETS.md), [debate source notes](docs/debates/README.md).
+- Developer workflows: [scripts/README.md](scripts/README.md).
 - Discussion/tasks: pp-pipeline issue #6
 
 ## How it works (current eval pipeline)
@@ -57,4 +60,18 @@ python eval/diarize.py data/duel.wav data/duel.turns.json 3
 cd eval && python turns.py ../data/duel.json3 ../data/duel.turns.json
 ```
 
-`data/` is git-ignored: no audio, captions or big data files in the repo.
+## Dataset and development checks
+
+```bash
+python -m pip install -r requirements-dev.txt
+python -m unittest discover -s tests -v
+python scripts/build-shared-dataset.py --metadata-only --check
+
+# With existing private translations installed:
+python scripts/build-translation-review.py
+python scripts/build-shared-dataset.py
+```
+
+Full shared dataset: **`data/datasets/shared/accepted.jsonl`**; offline reader: `data/datasets/shared/index.html`. Review buckets and provenance are documented in [datasets/README.md](datasets/README.md). No model server needed for these tests/builds; private-data integration tests skip on fresh clones.
+
+`data/` is gitignored: audio, raw captions, imported English corpora and private German translations stay local. Dataset schema, metadata index and review decisions are committed. Back up `data/` separately; a clone alone does not restore imported full text.

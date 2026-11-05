@@ -4,4 +4,9 @@ data/
 *.json3
 *.labels.json
 __pycache__/
+*.py[cod]
+.pytest_cache/
 .venv/
+.env
+.env.*
+.DS_Store

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "language": "de",
+  "text_kind": "caption_based_paraphrase",
+  "description": "Four real-debate exchanges with user-confirmed main labels. German A/B inputs are editorial paraphrases grounded in timestamped automatic captions, not verbatim transcripts. Historical and economic claims are reproduced as participant positions, not verified facts.",
+  "review": {
+    "label_status": "user_confirmed",
+    "basis": "Assistant caption analysis followed by explicit user label review",
+    "audio_verified": false,
+    "blind_independent_review": false
+  },
+  "sources": {
+    "youtube:EWXTVzXEl48": {
+      "url": "https://www.youtube.com/watch?v=EWXTVzXEl48",
+      "title": "Zuschauer vs. Dekarldent: Kommunismus tötet Menschen! | XL DEBATTE",
+      "channel": "Daily Dose Of Dekarldent",
+      "stream_date": "2025-11-15",
+      "upload_date": "2025-11-16",
+      "date_basis": "YouTube metadata and uploader description",
+      "caption_kind": "youtube_automatic_de_orig",
+      "local_caption_path": "data/recommendations/EWXTVzXEl48.de-orig.json3",
+      "analysis_path": "docs/debates/DEBATE_ANALYSIS_EWXTVzXEl48.md"
+    }
+  },
+  "cases": [
+    {
+      "id": "EWXTVzXEl48-0248-strohmann",
+      "source_id": "youtube:EWXTVzXEl48",
+      "source_url": "https://www.youtube.com/watch?v=EWXTVzXEl48&t=201s",
+      "a_speaker": "caller",
+      "a_span_seconds": {"start": 201, "end": 248},
+      "b_speaker": "Dekarldent",
+      "b_span_seconds": {"start": 248, "end": 269},
+      "context": "Diskussion darüber, ob militärische Konkurrenz die schwache Entwicklung ziviler Produkte in der Sowjetunion erklärt.",
+      "a": "Du erklärst die schwache zivile Innovation in der Sowjetunion mit den hohen Militärausgaben. Die USA hatten ebenfalls hohe Militärausgaben, trotzdem ging es ihrer Zivilbevölkerung besser und die Innovation entwickelte sich weiter. Wie erklärst du den Unterschied?",
+      "b": "Nicht allen Menschen in den USA ging es besser. Man vergleicht gern einen amerikanischen Millionär mit einem sowjetischen Bauern und sagt dann, dem Amerikaner gehe es viel besser.",
+      "expected_main": "strohmann",
+      "expected_positives": null,
+      "rationale": "B replaces A's population-level comparison with the stronger universal claim that every American was better off and an extreme millionaire-versus-peasant comparison that A did not make. Refuting that substituted comparison does not answer A's actual objection.",
+      "scope_note": "Label the opening rebuttal only. Around 04:29 A clarifies that the comparison concerns the middle class; B subsequently addresses that narrower claim."
+    },
+    {
+      "id": "EWXTVzXEl48-0676-whataboutism",
+      "source_id": "youtube:EWXTVzXEl48",
+      "source_url": "https://www.youtube.com/watch?v=EWXTVzXEl48&t=674s",
+      "a_speaker": "caller",
+      "a_span_seconds": {"start": 674, "end": 676},
+      "b_speaker": "Dekarldent",
+      "b_span_seconds": {"start": 676, "end": 713},
+      "context": "B hat die russische Revolution als weniger blutig beschrieben, als sie häufig dargestellt werde. A fragt nach der Zahl der Todesopfer.",
+      "a": "Wie viele Menschen sind bei der russischen Revolution gestorben?",
+      "b": "Genaue Zahlen habe ich nicht. Aber ich stelle dir eine andere Frage: Ist es die Millionen von Toten wert, die Marktwirtschaft am Leben zu halten? Wenn du nach den Opfern einer Revolution fragst, kann ich ebenso nach den Opfern des heutigen Systems fragen.",
+      "expected_main": "whataboutism",
+      "expected_positives": null,
+      "rationale": "Instead of supplying or substantiating the requested death count, B redirects scrutiny toward alleged deaths caused by the opposing economic system. The user confirmed this as whataboutism because the counter-question does not answer A's specific question.",
+      "scope_note": "Preserve B's initial admission of lacking precise figures. The label concerns the subsequent counter-question, not a claim that B said nothing responsive."
+    },
+    {
+      "id": "EWXTVzXEl48-0939-strohmann",
+      "source_id": "youtube:EWXTVzXEl48",
+      "source_url": "https://www.youtube.com/watch?v=EWXTVzXEl48&t=866s",
+      "a_speaker": "Dekarldent",
+      "a_span_seconds": {"start": 866, "end": 936},
+      "b_speaker": "caller",
+      "b_span_seconds": {"start": 939, "end": 974},
+      "context": "A kritisiert die Verteilung lebensnotwendiger Güter nach Zahlungsfähigkeit und befürwortet eine andere Wirtschaftsordnung.",
+      "a": "In einer profitorientierten Wirtschaftsordnung bekommen Menschen lebensnotwendige Güter nur, wenn sie dafür bezahlen können. Menschen sterben, obwohl die nötigen Ressourcen vorhanden wären. Diese Bedürfnisse sollten befriedigt werden.",
+      "b": "Das Leid finde ich auch schlimm. Aber meinst du deshalb, dass es allen schlechter gehen sollte, damit man dem untersten einen Prozent hilft?",
+      "expected_main": "strohmann",
+      "expected_positives": null,
+      "rationale": "B recasts A's demand to meet unmet needs as support for making everyone worse off to benefit a tiny minority. A did not advocate or accept that trade-off. The question attacks that substituted position through an unaccepted premise.",
+      "scope_note": "The response also has loaded-question framing. Record strohmann as the user-confirmed main label; do not silently introduce a new taxonomy class. B begins an innovation-based justification around 16:20, outside this response span."
+    },
+    {
+      "id": "EWXTVzXEl48-1226-ad-hominem",
+      "source_id": "youtube:EWXTVzXEl48",
+      "source_url": "https://www.youtube.com/watch?v=EWXTVzXEl48&t=1219s",
+      "a_speaker": "caller",
+      "a_span_seconds": {"start": 1221, "end": 1226},
+      "b_speaker": "Dekarldent",
+      "b_span_seconds": {"start": 1226, "end": 1232},
+      "context": "Der Anrufer versucht zu erklären, warum er seine Zeit nicht ohne Weiteres für die Bedürfnisse eines unbekannten anderen Menschen einsetzen würde. Dekarldent unterbricht mit der Frage nach seinem Beruf.",
+      "a": "Ich gehe noch zur Schule.",
+      "b": "Dann ist es natürlich schwer, gegen die Indoktrination anzukämpfen. Was willst du später beruflich machen?",
+      "expected_main": "ad_hominem",
+      "expected_positives": null,
+      "rationale": "B responds to the caller's educational status by framing him as indoctrinated, discrediting the interlocutor's background instead of addressing the pending labor-incentive argument. The user confirmed the personal aside as ad hominem.",
+      "scope_note": "Include context when evaluating this short pair. The indoctrination term is garbled in automatic captions; the paraphrase records the interpreted wording, not an audio-verified quotation. Asking about occupation alone is not the labeled fallacy."
+    }
+  ]
+}

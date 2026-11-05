@@ -1,0 +1,122 @@
+{
+  "checked_at": "2026-11-05T11:41:08.315931+00:00",
+  "purpose": "Dataset discovery and import/translation preflight; no benchmark label promotion.",
+  "mm_used": {
+    "repository": "https://github.com/nlp-unibo/multimodal-am-fallacy",
+    "paper": "https://aclanthology.org/2024.eacl-short.16/",
+    "file": {
+      "url": "https://raw.githubusercontent.com/nlp-unibo/multimodal-am-fallacy/main/local_database/MM-DatasetFallacies/no_duplicates/dataset.csv",
+      "cached_file": "data/dataset_research/mm-no-duplicates.csv",
+      "sha256": "302ba4900be69b295a50c15b870185cca448be7cd315f32eb397c21918ec8d9c",
+      "bytes": 31599219,
+      "cached_at": "2026-11-05T11:28:59.966306+00:00"
+    },
+    "counts": {
+      "contexts": 242,
+      "cases": 1057,
+      "debates": 28,
+      "source_label_counts": {
+        "FalseCause": 55,
+        "AppealtoEmotion": 681,
+        "Slipperyslope": 43,
+        "AppealtoAuthority": 167,
+        "Slogans": 34,
+        "AdHominem": 77
+      },
+      "source_split_counts": {
+        "Test": 96,
+        "Validation": 94,
+        "Train": 867
+      },
+      "ambiguous_english_spans": 20,
+      "debates_in_multiple_source_splits": {}
+    },
+    "license_evidence": [
+      {
+        "url": "https://raw.githubusercontent.com/nlp-unibo/multimodal-am-fallacy/main/LICENSE",
+        "cached_file": "data/dataset_research/mm-license",
+        "sha256": "95df2e9564862e51d69683a899b6dcc8218d577057bdf67322880769ff85f29e",
+        "bytes": 18649,
+        "cached_at": "2026-11-05T11:28:52.078851+00:00"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/pierpaologoffredo/IJCAI2022/main/LICENSE",
+        "cached_file": "data/dataset_research/used-license",
+        "sha256": "e00e1b8e0ab1dc5ece4ece2ca2a9f335be6b02cffd437eb8eebeafbe291144a0",
+        "bytes": 196,
+        "cached_at": "2026-11-05T11:28:53.366648+00:00"
+      }
+    ],
+    "license_caution": "MM repository declares CC BY 4.0; underlying USED release declares CC BY-NC-SA 4.0. Do not assume commercial or unrestricted redistribution rights. Newer ElecDeb HF release declares CC BY-NC-ND 4.0."
+  },
+  "elecdeb60to20": {
+    "repository": "https://github.com/pierpaologoffredo/ElecDeb60to20",
+    "file": {
+      "url": "https://raw.githubusercontent.com/pierpaologoffredo/ElecDeb60to20/main/data/fallacy_second_version.csv",
+      "cached_file": "data/dataset_research/elecdeb-fallacy-v2.csv",
+      "sha256": "50d5672006cb8b11b96bf06989e173c4822a7a9f8c2c33e0058579491264327c",
+      "bytes": 579573,
+      "cached_at": "2026-11-05T11:29:01.394884+00:00"
+    },
+    "rows": 2744,
+    "license_evidence": {
+      "url": "https://huggingface.co/api/datasets/MARIANNE-INRIA/ElecDeb60to20",
+      "cached_file": "data/dataset_research/elecdeb-card",
+      "sha256": "9fc96e1ec2d981744e7143f933599f4064f3dfd7c26f7729247eff6b57763fce",
+      "bytes": 14653,
+      "cached_at": "2026-11-05T11:28:57.057848+00:00"
+    },
+    "hf_mirror_declared_license": "cc-by-nc-nd-4.0"
+  },
+  "mafalda": {
+    "repository": "https://github.com/ChadiHelwe/MAFALDA",
+    "file": {
+      "url": "https://raw.githubusercontent.com/ChadiHelwe/MAFALDA/main/datasets/gold_standard_dataset.jsonl",
+      "cached_file": "data/dataset_research/mafalda-gold.jsonl",
+      "sha256": "f714d58e7a21a66d63bc03ead98f376e2d9ab7a35d3f847d92ac1c2e0179004d",
+      "bytes": 243667,
+      "cached_at": "2026-11-05T11:29:02.670870+00:00"
+    },
+    "records": 200,
+    "span_entries": 272,
+    "license_status": "No explicit dataset license found in inspected repository/card."
+  },
+  "cocolofa": {
+    "repository": "https://github.com/Crowd-AI-Lab/cocolofa",
+    "readme": {
+      "url": "https://raw.githubusercontent.com/Crowd-AI-Lab/cocolofa/main/README.md",
+      "cached_file": "data/dataset_research/cocolofa-README.md",
+      "sha256": "7f6ead63baf24caf0d0d00813e6f5526a11a243a94afc9585d80f4eb897343de",
+      "bytes": 4784,
+      "cached_at": "2026-11-05T11:27:25.063916+00:00"
+    },
+    "author_reported_comments": 7706,
+    "author_reported_none_comments": 3130,
+    "counts_independently_recomputed": false,
+    "provenance": "LLM-assisted crowdworker-written comments, not spontaneous forum/debate scrape.",
+    "license_status": "No explicit reuse license found in inspected repository."
+  },
+  "logic": {
+    "repository": "https://github.com/causalNLP/logical-fallacy",
+    "file": {
+      "url": "https://raw.githubusercontent.com/causalNLP/logical-fallacy/main/data/edu_all.csv",
+      "cached_file": "data/dataset_research/logic-edu-all.csv",
+      "sha256": "bc03ca335524518b8eda3c63b97f45d15af3096de10fe1a4c3a890aabd7556a0",
+      "bytes": 768136,
+      "cached_at": "2026-11-05T11:35:33.075409+00:00"
+    },
+    "raw_rows": 2452,
+    "rows_excluding_miscellaneous": 2449,
+    "labels_excluding_miscellaneous": 13,
+    "license_status": "HF mirror marks unknown; no explicit dataset license found in inspected source repository."
+  },
+  "german_pilot": {
+    "path": "data/datasets/mm_used/translation_pilot_de.jsonl",
+    "records": 12,
+    "source_categories": 6,
+    "translation_method": "assistant_translation",
+    "human_reviews": 0,
+    "full_context_corpus_translated": false,
+    "redistribution_status": "Private research pilot pending license-chain clarification."
+  }
+}
