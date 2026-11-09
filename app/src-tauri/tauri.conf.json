@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Debatinator",
+  "version": "0.1.0",
+  "identifier": "dev.debatinator.overlay",
+  "build": { "frontendDist": "../ui" },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Debatinator",
+        "width": 420,
+        "height": 640,
+        "alwaysOnTop": true,
+        "visibleOnAllWorkspaces": true,
+        "resizable": true
+      }
+    ],
+    "security": { "csp": null }
+  },
+  "bundle": { "active": false, "icon": ["icons/icon.png"] }
+}

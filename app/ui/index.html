@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Debatinator</title>
+<style>
+  :root { --bg:#14161a; --card:#1e2127; --fg:#e6e6e6; --dim:#8a8f98; --acc:#e05a5a; --ok:#5ac87a; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.4 system-ui,sans-serif; }
+  header { position:sticky; top:0; display:flex; gap:8px; align-items:center; padding:8px 12px; background:var(--bg); border-bottom:1px solid #2a2e35; }
+  #dot { width:9px; height:9px; border-radius:50%; background:var(--acc); }
+  #dot.on { background:var(--ok); }
+  #status { color:var(--dim); font-size:12px; flex:1; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+  #live { padding:8px 12px; color:var(--dim); font-style:italic; min-height:2.8em; border-bottom:1px solid #2a2e35; }
+  #cards { padding:8px; display:flex; flex-direction:column; gap:8px; }
+  .card { background:var(--card); border-left:3px solid var(--acc); border-radius:6px; padding:8px 10px; }
+  .card:not(:first-child) { opacity:.55; }
+  .claim { font-weight:600; margin-bottom:4px; }
+  .card ol { margin:0; padding-left:18px; }
+  .card li { margin:3px 0; }
+  .meta { color:var(--dim); font-size:11px; margin-top:4px; }
+</style>
+</head>
+<body>
+<header><div id="dot"></div><div id="status">verbinde…</div></header>
+<div id="live">…</div>
+<div id="cards"></div>
+<script>
+  const URL = "http://127.0.0.1:8765/events";
+  const $ = id => document.getElementById(id);
+  const MAX_CARDS = 8;
+
+  function connect() {
+    const es = new EventSource(URL);
+    es.onopen = () => { $("dot").className = "on"; $("status").textContent = "verbunden"; };
+    es.onerror = () => { $("dot").className = ""; $("status").textContent = "kein Server auf :8765 — python live/server.py"; };
+    es.onmessage = ev => {
+      const m = JSON.parse(ev.data);
+      if (m.type === "transcript") $("live").textContent = m.text;
+      else if (m.type === "status" || m.type === "error") $("status").textContent = m.msg;
+      else if (m.type === "counter") addCard(m);
+    };
+  }
+
+  function addCard(m) {
+    const c = document.createElement("div");
+    c.className = "card";
+    const claim = document.createElement("div");
+    claim.className = "claim"; claim.textContent = m.claim;
+    const ol = document.createElement("ol");
+    for (const a of m.args) { const li = document.createElement("li"); li.textContent = a; ol.append(li); }
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    meta.textContent = `${new Date(m.t * 1000).toLocaleTimeString()} · ${m.rag_ms ? `Suche ${m.rag_ms} ms · ` : ""}gesamt ${m.ms} ms`
+      + (m.refs?.length ? ` · Passagen: ${m.refs.map(r => r.citation).join("; ")}` : "");
+    c.append(claim, ol, meta);
+    $("cards").prepend(c);
+    while ($("cards").children.length > MAX_CARDS) $("cards").lastChild.remove();
+  }
+
+  connect();  // EventSource reconnects on its own
+</script>
+</body>
+</html>
